@@ -1,5 +1,5 @@
 # Site
-title:              Massively
+title:              Eeshaan
 bio:                'Jekyll version of the Massively theme by HTML5UP'
 description:        "Jekyll version of the Massively theme by HTML5UP"
 locale:             en_US
@@ -10,11 +10,11 @@ url: "" # the base hostname & protocol for your site
 disqus_shortname:   default
 
 # Social
-analytics-id:       "default"
-twitter:            default
-facebook:           default
-instagram:          default
-github:             default
+analytics-id:       "UA-176434187-1"
+facebook:           eeshaan.jain.3
+instagram:          eeshaan_jain
+github:             EeshaanJain
+linkedin:           eeshaan-jain-098208190
 
 # personal
 location:           Los Angeles, CA
