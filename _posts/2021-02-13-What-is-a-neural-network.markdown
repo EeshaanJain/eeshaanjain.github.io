@@ -3,7 +3,7 @@ layout: post
 title:  "What exactly is a neural network?"
 date:   2021-02-13
 excerpt: "An introduction to deep learning via the roots."
-image: "/images/pic02.jpg"
+image: "/images/neural_network.png"
 usemathjax: true
 mermaid: true
 ---
