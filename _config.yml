@@ -33,18 +33,19 @@ defaults:
   values:
     permalink: "/blog/:title/"
     layout: post
-    author:
+    author: Eeshaan Jain
 
 # Jekyll
 permalink:          /blog/:title/
 markdown:           kramdown
-highlighter:        rouge
+# highlighter:        rouge
 kramdown:
   auto_ids:         true
   footnote_nr:      1
   entity_output:    as_char
   toc_levels:       1..6
   enable_coderay:   false
+  syntax_highlighter: rouge
 mathjax:            true
 sass:
   sass_dir:         _sass

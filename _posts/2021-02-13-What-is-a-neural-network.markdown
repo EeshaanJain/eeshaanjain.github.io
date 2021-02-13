@@ -124,6 +124,7 @@ D -- Best accuracy <br>and b --> F[Done]
 </center>
 Now, let's dive into how to do it in python. (Note, I am not showing the binarization of data. I am assuming my X and y are already binarized arrays).
 The above process of finding the best $$b$$ is called training the model. We train on model on certain data, and test it out on certain data (obviously not the same as the one we trained on). For that, I will take the training data as X_train and y_train, and test data as X_test and y_test. Let's write a class for the MP Neuron.
+
 ```python
 class MPNeuron():
 	#__init__ function to initialise b
@@ -154,5 +155,4 @@ class MPNeuron():
 		self.b = best_b
 		print("Optimal value of b is : ", best_b)
 		print("Highest accuracy achieved is : ", accuracy[best_b])
-
 ```
