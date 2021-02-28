@@ -1,0 +1,141 @@
+@import url(https://fonts.googleapis.com/css?family=Old+Standard+TT:400,400italic,700);
+
+@import url(https://fonts.googleapis.com/css?family=Cutive+Mono);
+
+body{
+  width=100%;
+	font-family: 'Cutive Mono';
+	background-color:rgba(40,40,40,1.00);
+	color:rgba(255,255,255,1.00);
+	/*overflow:hidden;*/
+  background: rgb(15,15,15) /*#466368;*/
+  /*background: linear-gradient(to right, rgb(80,80,80), rgb(40,40,40), rgb(80,80,80));*/
+}
+
+body * {
+    z-index: 20;
+    color: rgba(15,15,15,1.00);
+}
+
+.text-container {
+    position: relative;
+  width: 80%;
+    top: 50px;
+  float: right;
+}
+
+#fs {
+    position: relative;
+    color: #000;
+    margin: 20px;
+    cursor: pointer;
+}
+
+header{
+	font-family: 'Andale Mono', monospace;
+	font-size:200%;
+	font-weight:700;
+	letter-spacing:1px;
+	margin-bottom:20px;
+	text-decoration:underline;
+  background-color: red;
+  background-image: linear-gradient(90deg,#4DA0B0, #D39D38);
+  background-size: 100%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+}
+
+h2{
+	font-family: 'Old Standard TT', serif;
+	font-weight:bold;
+	font-size:20px;
+	height:20px;
+	margin:0px;
+  background-color: red;
+  background-image: linear-gradient(90deg,#C02425, #F0CB35);
+  background-size: 100%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+
+
+}
+
+h3{
+	font-family: 'Old Standard TT', serif;
+	font-weight:400;
+	margin:0px;
+	margin-top:-10px;
+  background-color: red;
+  background-image: linear-gradient(90deg,#004FF9, #FFF94C);
+  background-size: 100%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+}
+
+h4{
+	font-family: 'Old Standard TT', serif;
+	font-style:italic;
+	font-weight:400;
+	font-size:12px;
+	margin:0px;
+	margin-top:-15px;
+}
+
+.section{
+	margin:10px;
+	margin-left:2%;
+	width:35%;
+}
+
+#experience{
+	float:left;
+}
+
+#education{
+	float:left;
+}
+
+#skills{
+	float:left;
+}
+
+/*#fs {
+    position: relative;
+    color: #000;
+    margin: 20px;
+    cursor: pointer;
+}*/
+
+#about{
+	float:left;
+}
+
+#contact{
+	float:left;
+}
+
+
+
+/*/////////////////////////////////  FLASHLIGHT EFFECT ////////////////////////////  */
+
+#light {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background-color: #fff;
+    z-index: 10;
+    -webkit-box-shadow: inset 0px 10px 130px 100px rgba(10,10,10,1);
+    -moz-box-shadow: inset 0px 10px 130px 100px rgba(10,10,10,1);
+    box-shadow: inset 0px 10px 130px 100px rgba(10,10,10,1);
+
+}
+/*//////////////////////////////// END FLASHLIGHT EFFECT ///////////////////////////  */

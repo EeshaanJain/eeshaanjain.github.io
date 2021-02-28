@@ -81,8 +81,9 @@ else
 	put y = 0
 ```
 This would generate out boolean inputs (although later you will see we will work with float values too!)
+<blockquote><b>Task 1:</b> Using the above definition of the MP Neuron, generate the boolean functions : 2 input AND, 3 input OR, NOT, TAUTOLOGY. How do you geometrically interpret the first 2 functions?</blockquote>
 
-**Task 1:** Using the above definition of the MP Neuron, generate the boolean functions : 2 input AND, 3 input OR, NOT, TAUTOLOGY. How do you geometrically interpret the first 2 functions?
+<hr/>
 
 Now, lets start the learning aspect of this neuron. The general goal of a supervised learning network is to predict a $$\hat{f}$$ which maps the input to the output most accurately. So how do we measure the accuracy? How do we know that our model is good or bad? For that we define a loss function, and try to minimize it. We'll get into that in a bit, but what are we trying to learn here?
 In the case of the MP Neuron, we have only 1 unknown parameter $$``b"$$ and our goal is to find the best $b$ to describe the task.  Hence, we learn the value of $$b$$. (Though it is not at all necessary that our data follows a linear pattern. We are trying to fit a linear pattern into our data whose patter we have no idea about. This is where you would realise, we would need even better methods to get a higher accuracy because obviously, a linear fit wouldn't be that accurate in a non-linear setting).
