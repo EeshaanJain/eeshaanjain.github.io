@@ -1,0 +1,52 @@
+---
+layout: page
+title: Jekyll Theme - Elements Reference - Massively
+description: Having a massive list of every element of a theme is useful for quick referencing and ideas. Here is every component of Massively!
+sitemap:
+    priority: 0.7
+    lastmod: 2017-11-02
+    changefreq: weekly
+---
+<style>
+.stylish ol {
+  list-style: none;
+  counter-reset: my-awesome-counter;
+}
+.stylish li {
+  counter-increment: my-awesome-counter;
+  margin: 0.25rem;
+}
+.stylish li::before {
+  content: counter(my-awesome-counter);
+  background: #662974;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: inline-block;
+  line-height: 2rem;
+  color: white;
+  text-align: center;
+  margin-right: 0.5rem;
+}
+.stylish ol ol li::before {
+  background: #DE51FF;
+}
+.stylish ol ol ol li::before {
+  background: #EE9EFF;
+}
+</style>
+
+
+<header class="major">
+	<h1>NOTES</h1>
+</header>
+
+<!-- Text stuff -->
+	<hr/>
+    <div class="stylish">
+    <ol>
+       <li>Mathematics</li>
+       <li>Physics</li>
+       <li>Coding</li>
+      </ol>
+    </div>
