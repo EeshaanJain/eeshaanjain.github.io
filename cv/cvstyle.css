@@ -398,6 +398,7 @@ h3 {
   clear: both;
   background: #283593;
   padding: 15px;
+  margin-top: 15px;
 }
 
 .resume .func .skills-prog ul {
@@ -550,6 +551,7 @@ h3 {
   width: 100px;
   height: 100px;
   border-radius: 50%;
+  cursor: pointer;
 }
 
 .resume .func .interests-items div:hover i {
@@ -576,4 +578,6 @@ h3 {
 .resume .func .interests-items div span {
   display: block;
 }
+
+
 /*# sourceMappingURL=cvstyle.css.map */

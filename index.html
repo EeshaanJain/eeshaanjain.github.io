@@ -17,7 +17,56 @@ sitemap:
 <html>
 	<head>
     {% include head.html %}
+	<style>
 
+	.stylish{
+		display: flex;
+	}
+
+	.stylish .sty-col{
+		flex: 50%;
+  		padding: 10px;
+	}	
+
+	.stylish .sty-col	ul { 
+  padding: 0;
+  max-width: 700px;
+}
+
+/* List element */
+.stylish .sty-col	li {
+  counter-increment: index; 
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  box-sizing: border-box;
+}
+
+
+/* Element counter */
+.stylish	li::before {
+  /* content: counters(index, ".", decimal-leading-zero); */
+  font-family: 'FontAwesome';
+    content: '\f0da';
+  font-size: 1.5rem;
+  text-align: right;
+  font-weight: bold;
+  min-width: 50px;
+  padding-right: 12px;
+  font-variant-numeric: tabular-nums;
+  align-self: flex-start;
+  background-image: linear-gradient(to bottom, aquamarine, orangered);
+  background-attachment: fixed;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+/* Element separation */
+.stylish	li + li {
+  border-top: 1px solid rgba(255,255,255,0.2);
+}
+	</style>
 
 	</head>
 	<body class="is-loading">
@@ -49,26 +98,29 @@ sitemap:
 
 				<!-- Main -->
 					<div id="main">
-						<!-- Featured Post -->
-							<!-- <article class="post featured">
-								<header class="major">
-									<h2><a href="#">Massively is a versatile Jekyll theme</a></h2>
-									<p>With only a few edits, you can have a stunningly beautiful website <br />
-                    nearly out of the box. Of course... you can always take it further <br />
-                    and make it something even more amazing!</p>
-								</header>
-								<a href="#" class="image main"><img src="{{ "/images/pic01.jpg" | absolute_url }}" alt="" /></a>
-                <p>Regardless of your website's function, the homepage is what brings the user in.
-                  If it's anything short of intriguing, captivating, or just plain cool, you're out of luck and you might deter some visitors.</p>
-                <p>Your homepage must clearly describe what your site is about.
-									Having engaging content will in this manner enable you to offer and it will make your customers more inclined to purchase from you. Content is a way to position your organization in the correct place for your clients to discover you.
-								</p>
-								<p>
-									In this manner, content in itself is a standout amongst the best promoting apparatuses in your whole advertising toolbox! Rather than making your content around your promoting technique, it's limitlessly more productive to fabricate your showcasing around your content.
-								 </p>
-
-							</article> -->
-                            <p> Yo &#129312; Sup</p>
+							
+                            
+								<center><h2>Welcome to my website 🤠 </h2></center>
+								<p>Let's first describe some basic whereabouts, for ease of navigation I'd say
+								<div class="stylish">
+									
+									<div class="sty-col">
+										<ul>
+									<li><a href="/">📜 Homepage of my website</a></li>
+									<li><a href="/about">📜 Some general stuff about me</a></li>
+									<li><a href="/about/courses">📜 Courses I've done (UD)</a></li>
+									<li><a href="/about/profiles">📜 All my profiles (UD)</a></li>
+									<li><a href="/blog">📜 Here's my blog</a></li>
+									<li><a href="/resume">📜 My Résumé (PDF and Responsive)</a></li>
+									</div>
+									<div class="sty-col">
+									<li><a href="/projects">📜 Some of the projects I'm working on</a></li>
+									<li><a href="/notes">📜 Notes that I've made for courses and other stuff</a></li>
+									<li><a href="/404.html">📜 A very fancy 404 page</a></li>
+								</ul>
+							</div>
+						
+							</div>
 
 						<!-- Posts -->
 							<section class="posts">
@@ -82,17 +134,10 @@ sitemap:
   									<a href="{{ post.url | absolute_url }}" class="image fit"><img src="{{ post.image | absolute_url }}" alt="" /></a>
   									<p>{{ post.excerpt }}</p>
   									<ul class="actions">
-  										<li><a href="{{ post.url | absolute_url }}" class="button">Full Story</a></li>
+  										<li><a href="{{ post.url | absolute_url }}" class="button">Read Further</a></li>
   									</ul>
   								</article>
-                  <!-- {% if mod3 == 0 %}
-                  <article>
-  									<header>
-  										<h2><a href="#">Sponsored</a></h2>
-  									</header>
 
-  								</article>
-                  {% endif %} -->
                 {% endfor %}
 
 							</section>
