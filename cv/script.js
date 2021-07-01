@@ -60,7 +60,8 @@
           {
             duration: 1000,
             step: function(now) {
-              return $(this).text(Math.ceil(now) + "%");
+              //return $(this).text(Math.ceil(now) + "%");
+              return "";
             }
           }
         );
