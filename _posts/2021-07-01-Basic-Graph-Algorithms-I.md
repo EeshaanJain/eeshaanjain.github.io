@@ -7,10 +7,6 @@ image: "/images/graph.png"
 usemathjax: true
 ---
 
-# Basic Graph Algorithms - I
-
-This post is essentially a recap of basic graph theory algorithms and their implementations in C++.
-
 ## Representation of Graphs
 
 We will stick to the adjacency list representation of a graph, and not the adjacency matrix method (which takes up $$O(N^2)$$ space and DFS/BFS on it take $$O(N^2)$$ time).
@@ -339,7 +335,290 @@ void dfs(int v, int parent){
 }
 ```
 
+## Finding Articulation Points
+
+Articulation points or cut vertices are vertices, which when removed make the graph disconnected or more precisely, increase the number of CC.
+
+There are some misconceptions about AP - 
+
+> End points of a bridge are AP
+
+Well, this isn't entirely true. Consider a bridge whose one end point is a node, which has no other edges. Such a node isn't AP since removing it doesn't make any difference. Hence, a stricter condition is that the end points of bridge must have degree > 1.
+
+We can also have AP w/o bridges (for example, consider a fidget spinner type shape with 4 nodes).
+
+We can use DFS tree to find AP. We pick any arbitrary vertex of the graph and run DFS from it. We notice 2 facts:
+
+1. Let's say we are in the DFS, looking through the edges starting from vertex v which isn't the root. If the current edge (v, u) is such that none of the vertices u or it descendants in the DFS traversal tree has a back-edge to any of ancestors of v, then v is an AP.
+2. If v is the root, then it will be AP if and only if this vertex has more than 1 child in the DFS tree.
+
+The `low` array works similar to the one in bridges, with the same minimizations. A vertex v in the DFS tree is an AP if and only if 
+
+$$ low[child] \geq in[v]$$
+
+```cpp
+vector<int> ar[N+1];
+vector<int> vis(N+1);
+vector<int> low(N+1), in(N+1);
+int timer = 0;
+set<int> cut_vertices; // Set of cut vertices
 
 
+void dfs(int v, int parent){
+    int children = 0; // We need to count children for the root node
+    vis[v] = 1; // Set current node as visited
+    low[v] = in[v] = timer; // Set low = in = timer
+    timer++;
 
+    for(int child: ar[v]){
+        if(child == parent) // This case, we continue
+            continue;
+        if(vis[child] == 1) // If visited, we minimise low as shown before
+            low[v] = min(low[v], in[child]);
+        else{
+            dfs(child, v); // Visit the child
+            ++children; // Increment the number of children
+            low[v] = min(low[v], low[child]); // Minimise low time
+            if(low[child] >= in[v] && parent != -1) // If low of child >= in of v, and v isn't the root, then we have AP
+                cut_vertices.insert(v);
+            
+        }
+    }
+    if(parent == -1 && children > 1) // If vertex is root, and it has more than 1 child, then it is AP
+        cut_vertices.insert(v);
+}
+```
+
+## DFS on a 2D Grid
+
+For DFS on a 2D grid, the traversal depends on the task. For now, let's consider given a cell in a grid, we can either go up, down, left or right. We can write this as, given a cell coordinate (x,y) we have the possible moves:
+
+$$(x', y') = \begin{cases}(x+1, y) \\ (x-1, y)\\(x, y-1)\\(x,y+1) \end{cases}$$
+
+This can be represented as $$x' = x + dx[i]$$ and $$y' = y + dy[i]$$ where $$dx = \{1, -1, 0, 0 \}$$ and $$dy = \{0, 0, -1, 1\}$$
+
+A move is valid, if it lies within the graph, i.e given a $$ N \times M$$ grid, $$ 1 \leq x \leq N$$ and $$1 \leq y \leq M$$ and the cell hasn't been visited yet.
+
+For implementation, let's consider a $$ N \times M$$ grid, with labels $$(1, 1)\to (N, M)$$
+
+```cpp
+int dx[] = {-1, 0, 1, 0}; // dx array
+int dy[] = {0, -1, 0, 1}; // dy array
+bool isValid(int x, int y){ // Validity condition
+    if(x < 1 || x > N || y < 1 || y > M){
+        return false;
+    }
+    if(vis[x][y]) return false;
+    return true;
+}
+void dfs_grid(int x, int y){
+    vis[x][y] = true; // Visit the cell
+    for(int i = 0; i < 4; i++){ // Loop over all 4 possibilities
+        if(isValid(x+dx[i], y+dy[i])){ // If valid
+            dfs_grid(x+dx[i], y+dy[i]); // Visit the cell
+        }
+    }
+}   
+int main(){
+    init_code();
+    cin>>N>>M;
+    dfs_grid(1, 1);
+}
+```
+
+## BFS on 2D Grid
+
+This is very similar to above, so I'll just paste the code here
+
+```cpp
+int dx[] = {-1, 0, 1, 0};
+int dy[] = {0, -1, 0, 1};
+
+bool isValid(int x, int y, vector<vector<int>> &vis, int N, int M){
+    if(x < 1 || x > N || y < 1 || y > M){
+        return false;
+    }
+    if(vis[x][y]) return false;
+    return true;
+}
+
+int main(){
+    int N, M;
+    cin>>N>>M;
+    vector<vector<int> > vis(N+1, vector<int>(M+1, 0));
+    vector<vector<int> > dist(N+1, vector<int>(M+1, 0));
+
+    queue<pair<int, int>> q;
+    q.push({1, 1});
+    dist[1][1] = 0;
+    vis[1][1] = 1;
+
+    while(!q.empty()){
+        int currX = q.front().first;
+        int currY = q.front().second;
+        q.pop();
+        for(int i = 0; i < 4; i++){
+            if(isValid(currX + dx[i], currY + dy[i], vis, N, M)){
+                int newX = currX + dx[i];
+                int newY = currY + dy[i];
+                dist[newX][newY] = dist[currX][currY] + 1;
+                vis[newX][newY] = 1;
+                q.push({newX, newY});
+            }
+        }
+    }
+```
+
+## Topological Sorting
+
+You are given a directed graph with N vertices and M edges. You have to **number the vertices** so that every edge leads from the vertex with a smaller number assigned to the vertex with a larger one. In other words, you want to find a permutation of the vertices (**topological order**) which corresponds to the order defined by all edges of the graph. Topological order can be **non-unique**, and may not even exist if the graph contains cycles.
+
+### Kahn's Algorithm for Topological Sort
+
+While reading the edges, we take note of the indegree of all nodes. Topo sort needs to start from those nodes whose indegree is 0. Now, we perform a simple BFS, and for each child, decrease their indegree, and push it to the queue only if the indegree is 0.
+
+```cpp
+void kahn(int n){ // n -> number of nodes
+    queue<int> q;
+    for(int i = 1; i <= n; i++){
+        if(in[i] == 0)
+            q.push(i);
+    }
+
+    while(!q.empty()){
+        int curr = q.front();
+        result.push_back(curr);
+        q.pop();
+        
+        for(int child: ar[curr]){
+            in[child]--;
+            if(in[child] == 0)
+                q.push(child);
+        }
+    }
+}
+```
+
+How do we check that the topo sort exists? Simply, if the length of result is not n, then the topo sort doesn't exist !
+
+## Kosaraju's Algorithm for SCC
+
+We have seen what SCC are, though for Kosaraju's algorithm, we need to know more definitions.
+
+A transposed graph of a directed graph is that graph, which has all its edges reversed. Two important things to observe is that number of SCC doesn't change for graph and its transpose, and transposing the graph interchanges the indegree and outdegree of each node. This is a key feature used in this algorithm.
+
+A condensation graph is a graph made with the SCC of the original graph. Each SCC acts as a vertex in the condensation graph and there exists an edge from SCC $$C_i \to C_j$$ iff $$\exists$$ node $$v \in C_i$$ and $$u \in C_j$$ such that there is an edge $$v \to u$$. It is not hard to see that a condensation graph is a DAG (directed acyclic graph).
+
+> **Lemma: ** If $$C_i$$ and $$C_j$$ are SCC and there exists and edge from $$C_i \to C_j$$ then $$out[C_i] \gt out[C_i]$$.
+
+The out time of a SCC is defined as the maximum of out times of all vertices present in the SCC.
+
+> **Claim: ** A directed acyclic graph has at least 1 node with indegree 0
+
+This again is not hard to see.
+
+Now, coming back to Kosaraju's algorithm, we run two series' of DFS. The first one is on the normal graph and decides the order in which we run DFS on the transposed graph. To find the SCC which has 0 in degree, it is equivalent to finding the node with the highest out time in the normal graph (since that will have outdegree 0). Hence we run DFS on graph, and sort by out time.
+
+```cpp
+vector<int> ar[N+1];
+vector<int> tr[N+1]; // Transposed graph
+vector<int> order(N+1); // Stores order of out time
+vector<int> SCC; // Temporary vector to store SCC
+vector<int> vis(N+1);
+
+void dfs(int node){ 
+    vis[node] = 1;
+    for(int child: ar[node]){
+        if(vis[child] == 0)
+            dfs(child);
+    }
+    order.push_back(node); // Push back the out times of node
+}
+
+void dfs_tr(int node){
+    vis[node] = 1;
+    for(int child: tr[node]){
+        if(vis[child] == 0)
+            dfs_tr(child);
+    }
+    SCC.push_back(node); // Add node to SCC
+}
+
+int main(){
+    int num, M; // Number of nodes, edges
+    cin>>num>>M;
+    while(M--){
+        int a, b;
+        cin>>a>>b; // Read edge
+        ar[a].push_back(b); // Add edge to graph
+        tr[b].push_back(a); // Add reverse edge to transposed graph
+    }
+    
+    for(int i = 1; i <= num; i++){ // Run DFS
+        if(vis[i] == 0)
+            dfs(i);
+    }
+
+    for(int i = 1; i <= num; i++)
+        vis[i] = 0;
+    
+    for(int i = 1; i <= num; i++){ // Traverse the order array in reverse 
+        if(vis[order[num-i]] == 0){
+            SCC.clear(); // Each dfs_tr visit will give a SCC
+            dfs_tr(order[num-i]);
+            for(int node: SCC){
+                cout<<node<<" ";
+            }
+            cout<<endl;
+        }
+    }
+
+    return 0;
+}
+```
+
+## Tarjan's Algorithm for SCC
+
+Tarjan's algorithm for finding SCC poses a restriction from which we can update the LLV. During DFS and calculation of LLV, the algorithm keeps track of active nodes, and we can update the LLV iff the node is present in the active nodes. The algorithm uses a stack which stores the active nodes, and we can minimise the value if and only if it's in the stack. 
+
+We find an SCC only when LLV(node) = in(node). If we find that, we pop elements off the stack until that node (inclusive).
+
+```cpp
+vector<int> ar[NUM+1];
+bool vis[NUM+1], onStack[NUM+1]; // Track elements on stack
+int in[NUM+1], low[NUM+1];
+stack<int> s; // stack
+int timer = 1, SCC = 0; //SCC -> counts number of SCC
+void dfs(int node){
+    vis[node] = true;
+    in[node] = low[node] = timer++;
+    onStack[node] = true; // Push node to stack 
+    s.push(node);
+
+    for(int u: ar[node]){
+        if(vis[u] && onStack[u]){ // If node is visited and is in the set of active nodes, update low[node]
+            low[node] = min(low[node], in[u]);
+        }
+        else{
+            if(!vis[u]){ // If not visited, visit it
+                dfs(u);
+                if(onStack[u]){ // Update only if it's in the set of active nodes
+                    low[node] = min(low[node],low[u]);
+                }
+            }
+        }
+    }
+    if(in[node] == low[node]){ // If low = in condition is found
+        SCC++; // We found a SCC
+        int temp;
+        while(true){
+            temp = s.top(); // Remove elements till the node element
+            s.pop();
+            onStack[temp] = false;
+            if(temp == node)
+                break;
+        }
+    }
+}
+```
 
