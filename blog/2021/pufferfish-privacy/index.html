@@ -12,7 +12,7 @@
   Eeshaan  Jain
 
 
-  | blog
+  | pufferfish privacy
 
 </title>
 <meta name="description" content="Eeshaan Jain's Portfolio. Based on [*folio](https://github.com/bogoli/-folio) design.
@@ -38,7 +38,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❄️</text></svg>">
 
 <link rel="stylesheet" href="/assets/css/main.css">
-<link rel="canonical" href="https://eeshaanjain.github.io/blog/">
+<link rel="canonical" href="https://eeshaanjain.github.io/blog/2021/pufferfish-privacy/">
 
 
 <!-- Dark Mode -->
@@ -80,8 +80,6 @@
           </li>
           
           <!-- Other pages -->
-          
-          
           
           
           
@@ -155,8 +153,8 @@
           
           
           
-            <div class = "toggle-container">
-              <a id = "light-toggle">
+            <div class="toggle-container">
+              <a id="light-toggle">
                   <i class="fas fa-moon"></i>
                   <i class="fas fa-sun"></i>
               </a>
@@ -173,98 +171,80 @@
     <!-- Content -->
 
     <div class="container mt-5">
-      <div class="post">
-
-  <div class="header-bar">
-    <h1></h1>
-    <h2>A blog filled with stuff related to Machine Learning and random notes.</h2>
-  </div>
+      
 
 
-  <ul class="post-list">
-    
 
-    
-    
-    
-    
 
-    <li>
-      <h3><a class="post-title" href="//blog/2022/singular-value-decomposition/">singular value decomposition</a>
-      </h3>
-      <p>a post describing singular value decomposition and related theorems</p>
-      <p class="post-meta"> 2 min read &nbsp; &middot; &nbsp;
-        January 10, 2022
-      </p>
-      <p class="post-tags">
-        <a href="//blog/2022">
-          <i class="fas fa-calendar fa-sm"></i> 2022 </a>
 
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">pufferfish privacy</h1>
+    <p class="post-meta">December 29, 2021</p>
+    <p class="post-tags">
+      <a href="//blog/2021"> <i class="fas fa-calendar fa-sm"></i> 2021 </a>
+      
+        ·  
+        
+        <a href="//blog/tag/math">
+          <i class="fas fa-hashtag fa-sm"></i> math</a>  
           
-          &nbsp; &middot; &nbsp;
-            
-            <a href="//blog/tag/math">
-              <i class="fas fa-hashtag fa-sm"></i> math</a> &nbsp;
-              
-            <a href="//blog/tag/description">
-              <i class="fas fa-hashtag fa-sm"></i> description</a> &nbsp;
-              
+        <a href="//blog/tag/description">
+          <i class="fas fa-hashtag fa-sm"></i> description</a>  
           
+      
 
+      
+        ·  
+        
+        <a href="//blog/category/privacy">
+          <i class="fas fa-tag fa-sm"></i> privacy</a>  
           
-          &nbsp; &middot; &nbsp;
-            
-            <a href="//blog/category/linear-algebra">
-              <i class="fas fa-tag fa-sm"></i> linear-algebra</a> &nbsp;
-              
-          
+      
+
     </p>
+  </header>
+
+  <article class="post-content">
+    <p>This post described the concept of the Pufferfish framework introduced here<sup id="fnref:pf" role="doc-noteref"><a href="#fn:pf" class="footnote" rel="footnote">1</a></sup>.<br>
+We look over notations first:</p>
+<ul>
+  <li>\(\mathcal{I}\): The set of possible database instances.</li>
+  <li>\(\mathfrak{Data}\): A random variable for the true dataset, which the attacker has no knowledge of.</li>
+  <li>\(\mathbb{S}\): A set of potential secrets, revealing which may cause harm.</li>
+  <li>\(\mathbb{D}\): A conservative collection of plausible data generating distributions, i.e the set of evolution scenarios.</li>
+  <li>\(\theta\): A probability distribution.</li>
+</ul>
+
+<p>The Pufferfish framework needs specification of three components:</p>
+<ol>
+  <li>\(\mathbb{S}\): This is the explicit specification of what we would want to protect. Any statement \(s \in \mathbb S\) may or may not be true. Essentially, \(s\) should be in \(\mathbb S\), if the release of the statement \(s\) or \(\neg s\) is harmful.</li>
+  <li>\(\mathbb{S}_{pairs} \subseteq \mathbb{S} \times \mathbb{S}\): This tells us how to protect \(\mathbb{S}\). Given a discriminative pair \((s_i, s_j)\), the attacker mustn’t be able to know if \(s_i\) is the true data, or if \(s_j\) is the true data. Thus, \(s_i\) and \(s_j\) must be <strong>mutually exclusive</strong> but can be <strong>non-exhaustive</strong>.</li>
+  <li>\(\mathbb{D}\): This is a set of conservative assumptions about how data is evolved/generated, and knowledge about potential attackers. Thus, \(\mathbb{D}\) is a set of probability distributions over \(\mathcal{I}\) and each \(\theta \in \mathbb D\) corresponds to an attacker we want to protect against, and is the belief of the attacker on how the data is generated.</li>
+</ol>
+
+<p><strong>Definition 1:</strong> Given a set of potential secrets \(\mathbb{S}\), a set of discriminative pairs \(\mathbb{S}_{pairs}\), a set of data evolution scenarios \(\mathbb{D}\), and a privacy parameter \(\epsilon &gt; 0\), an algorithm \(\mathfrak{M}\) satsifies \(\epsilon\)-<strong>P</strong>uffer<strong>F</strong>ish\((\mathbb{S}, \mathbb{S}_{pairs}, \mathbb{D})\) privacy if <br>
+\(\triangleright \;\forall \; \omega \in\) range\((\mathfrak{M})\)<br>
+\(\triangleright \;\forall \;\) pairs \((s_i, s_j) \in \mathbb{S}_{pairs}\)<br>
+\(\triangleright \;\forall \;\) distributions \(\theta \in \mathbb D\) for which Pr\((s_i|\theta)\neq 0\) and Pr\((s_j|\theta) \neq 0\)<br>
+the following holds</p>
+
+\[\text{Pr}(\mathfrak{M}(\mathfrak{Data})=\omega|s_i, \theta) \leq e^\epsilon \text{Pr}(\mathfrak{M}(\mathfrak{Data})=\omega|s_j, \theta)\]
+
+\[\text{Pr}(\mathfrak{M}(\mathfrak{Data})=\omega|s_j, \theta) \leq e^\epsilon \text{Pr}(\mathfrak{M}(\mathfrak{Data})=\omega|s_i, \theta)\]
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:pf" role="doc-endnote">
+      <p>Kifer, Daniel, and Ashwin Machanavajjhala. “Pufferfish: A framework for mathematical privacy definitions.” ACM Transactions on Database Systems (TODS) 39.1 (2014): 1-36. <a href="#fnref:pf" class="reversefootnote" role="doc-backlink">↩</a></p>
     </li>
+  </ol>
+</div>
 
-    
-
-    
-    
-    
-    
-
-    <li>
-      <h3><a class="post-title" href="//blog/2021/pufferfish-privacy/">pufferfish privacy</a>
-      </h3>
-      <p>a post describing pufferfish privacy - a generalised framework of privacy</p>
-      <p class="post-meta"> 2 min read &nbsp; &middot; &nbsp;
-        December 29, 2021
-      </p>
-      <p class="post-tags">
-        <a href="//blog/2021">
-          <i class="fas fa-calendar fa-sm"></i> 2021 </a>
-
-          
-          &nbsp; &middot; &nbsp;
-            
-            <a href="//blog/tag/math">
-              <i class="fas fa-hashtag fa-sm"></i> math</a> &nbsp;
-              
-            <a href="//blog/tag/description">
-              <i class="fas fa-hashtag fa-sm"></i> description</a> &nbsp;
-              
-          
-
-          
-          &nbsp; &middot; &nbsp;
-            
-            <a href="//blog/category/privacy">
-              <i class="fas fa-tag fa-sm"></i> privacy</a> &nbsp;
-              
-          
-    </p>
-    </li>
-
-    
-  </ul>
+  </article>
 
   
-
 
 </div>
 
@@ -275,8 +255,8 @@
     
 <footer class="fixed-bottom">
   <div class="container mt-0">
-    &copy; Copyright 2024 Eeshaan  Jain.
-    Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
+    © Copyright 2024 Eeshaan  Jain.
+    Powered by <a href="http://jekyllrb.com/" target="_blank" rel="noopener noreferrer">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="noopener noreferrer">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages</a>.
 
     
     

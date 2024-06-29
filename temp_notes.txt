@@ -1,1 +1,0 @@
-1. {% mermaid %} graph LR Input-->B[Some<br>Processing] B-->Output {% endmermaid %}
