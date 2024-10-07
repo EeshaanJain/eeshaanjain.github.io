@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="https://eeshaanjain.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://eeshaanjain.github.io/" rel="alternate" type="text/html" hreflang="en" /><updated>2024-10-07T16:22:47+00:00</updated><id>https://eeshaanjain.github.io/feed.xml</id><title type="html">blank</title><subtitle>Eeshaan Jain&apos;s Portfolio. Based on [*folio](https://github.com/bogoli/-folio) design.
+</subtitle><entry><title type="html">singular value decomposition</title><link href="https://eeshaanjain.github.io/blog/2022/singular-value-decomposition/" rel="alternate" type="text/html" title="singular value decomposition" /><published>2022-01-10T10:40:16+00:00</published><updated>2022-01-10T10:40:16+00:00</updated><id>https://eeshaanjain.github.io/blog/2022/singular-value-decomposition</id><content type="html" xml:base="https://eeshaanjain.github.io/blog/2022/singular-value-decomposition/"><![CDATA[<p>Every matrix \(\mathbf A \in \mathbb R^{m \times n}\) has a singular value decomposition given as</p>
+
+\[\begin{equation}\label{eqn:svd}\mathbf{A = U\Sigma V^\top}\end{equation}\]
+
+<p>where \(\mathbf U \in \mathbb{R}^{m\times m}\) and \(\mathbf V \in \mathbb{R}^{n\times n}\) are orthognal matrices and \(\mathbf \Sigma\in \mathbb{R}^{m\times n}\) is a diagonal matrix with singular values \(\sigma_i\) on it’s diagonal. Only the first \(r = \text{rank}(\mathbf A)\) values are non-zero and are in non-increasing order, i.e</p>
+
+\[\begin{equation}\sigma_1 \ge \sigma_2\ge\cdots\ge\sigma_r &gt; \sigma_{r+1} = \cdots = \sigma_{\min(m,n)} = 0 \end{equation}\]
+
+<p>We can also write Equation \((\ref{eqn:svd})\) in it’s sum of outerproduct form, i.e</p>
+
+\[\begin{equation} \mathbf{A} = \sum_{i=1}^r \sigma_i \mathbf{u}_i\mathbf{v}_i^\top \end{equation}\]
+
+<p>where \(\mathbf{u}_i\) (resp. \(\mathbf{v}_i\)) are columns of \(\mathbf U\) (resp. \(\mathbf V\)). A point to note is that the factors in SVD provide the eigendecomposition for the following two matrices:</p>
+
+<p>\(\begin{equation}\mathbf{A}^\top\mathbf A = (\mathbf{U\Sigma V^\top)^\top U\Sigma V^\top = V\Sigma^\top U^\top U \Sigma V^\top = V \Sigma^T\Sigma V^\top}\end{equation}\)
+\(\begin{equation}\mathbf{A}\mathbf A^\top = \mathbf{U\Sigma V^\top(U\Sigma V^\top)^\top =  U \Sigma V^\top V\Sigma^\top U^\top= U \Sigma\Sigma^\top U^\top}\end{equation}\)</p>
+
+<p>The columns of \(\mathbf V\) (right-singular values of \(\mathbf A\)) are eigenvectors of \(\mathbf{A^\top A}\) and the columns of \(\mathbf U\) (left-singular values of \(\mathbf A\)) are eigenvectors of \(\mathbf{A A^\top}\). Both \(\mathbf{\Sigma\Sigma^\top}\) and \(\mathbf{\Sigma^\top\Sigma}\) aren’t necessarily of the same dimensions, but have diagonal values as square of the singular values (with possibly 0 trailing values). Thus, the singular values of \(\mathbf{A}\) are the square roots of the eigenvalues of \(\mathbf{A}\mathbf A^\top\) or \(\mathbf{A}^\top \mathbf A\).</p>]]></content><author><name></name></author><category term="linear-algebra" /><category term="math" /><category term="description" /><summary type="html"><![CDATA[a post describing singular value decomposition and related theorems]]></summary></entry><entry><title type="html">pufferfish privacy</title><link href="https://eeshaanjain.github.io/blog/2021/pufferfish-privacy/" rel="alternate" type="text/html" title="pufferfish privacy" /><published>2021-12-29T10:40:16+00:00</published><updated>2021-12-29T10:40:16+00:00</updated><id>https://eeshaanjain.github.io/blog/2021/pufferfish-privacy</id><content type="html" xml:base="https://eeshaanjain.github.io/blog/2021/pufferfish-privacy/"><![CDATA[<p>This post described the concept of the Pufferfish framework introduced here<sup id="fnref:pf" role="doc-noteref"><a href="#fn:pf" class="footnote" rel="footnote">1</a></sup>.<br />
+We look over notations first:</p>
+<ul>
+  <li>\(\mathcal{I}\): The set of possible database instances.</li>
+  <li>\(\mathfrak{Data}\): A random variable for the true dataset, which the attacker has no knowledge of.</li>
+  <li>\(\mathbb{S}\): A set of potential secrets, revealing which may cause harm.</li>
+  <li>\(\mathbb{D}\): A conservative collection of plausible data generating distributions, i.e the set of evolution scenarios.</li>
+  <li>\(\theta\): A probability distribution.</li>
+</ul>
+
+<p>The Pufferfish framework needs specification of three components:</p>
+<ol>
+  <li>\(\mathbb{S}\): This is the explicit specification of what we would want to protect. Any statement \(s \in \mathbb S\) may or may not be true. Essentially, \(s\) should be in \(\mathbb S\), if the release of the statement \(s\) or \(\neg s\) is harmful.</li>
+  <li>\(\mathbb{S}_{pairs} \subseteq \mathbb{S} \times \mathbb{S}\): This tells us how to protect \(\mathbb{S}\). Given a discriminative pair \((s_i, s_j)\), the attacker mustn’t be able to know if \(s_i\) is the true data, or if \(s_j\) is the true data. Thus, \(s_i\) and \(s_j\) must be <strong>mutually exclusive</strong> but can be <strong>non-exhaustive</strong>.</li>
+  <li>\(\mathbb{D}\): This is a set of conservative assumptions about how data is evolved/generated, and knowledge about potential attackers. Thus, \(\mathbb{D}\) is a set of probability distributions over \(\mathcal{I}\) and each \(\theta \in \mathbb D\) corresponds to an attacker we want to protect against, and is the belief of the attacker on how the data is generated.</li>
+</ol>
+
+<p><strong>Definition 1:</strong> Given a set of potential secrets \(\mathbb{S}\), a set of discriminative pairs \(\mathbb{S}_{pairs}\), a set of data evolution scenarios \(\mathbb{D}\), and a privacy parameter \(\epsilon &gt; 0\), an algorithm \(\mathfrak{M}\) satsifies \(\epsilon\)-<strong>P</strong>uffer<strong>F</strong>ish\((\mathbb{S}, \mathbb{S}_{pairs}, \mathbb{D})\) privacy if <br />
+\(\triangleright \;\forall \; \omega \in\) range\((\mathfrak{M})\)<br />
+\(\triangleright \;\forall \;\) pairs \((s_i, s_j) \in \mathbb{S}_{pairs}\)<br />
+\(\triangleright \;\forall \;\) distributions \(\theta \in \mathbb D\) for which Pr\((s_i|\theta)\neq 0\) and Pr\((s_j|\theta) \neq 0\)<br />
+the following holds</p>
+
+\[\text{Pr}(\mathfrak{M}(\mathfrak{Data})=\omega|s_i, \theta) \leq e^\epsilon \text{Pr}(\mathfrak{M}(\mathfrak{Data})=\omega|s_j, \theta)\]
+
+\[\text{Pr}(\mathfrak{M}(\mathfrak{Data})=\omega|s_j, \theta) \leq e^\epsilon \text{Pr}(\mathfrak{M}(\mathfrak{Data})=\omega|s_i, \theta)\]
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:pf" role="doc-endnote">
+      <p>Kifer, Daniel, and Ashwin Machanavajjhala. “Pufferfish: A framework for mathematical privacy definitions.” ACM Transactions on Database Systems (TODS) 39.1 (2014): 1-36. <a href="#fnref:pf" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>]]></content><author><name></name></author><category term="privacy" /><category term="math" /><category term="description" /><summary type="html"><![CDATA[a post describing pufferfish privacy - a generalised framework of privacy]]></summary></entry></feed>
