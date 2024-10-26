@@ -2,7 +2,7 @@
 <html lang="en">
 
   <head>
-    <meta http-equiv="refresh" content="3; url=https://eeshaanjain.github.io//" />
+    
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +12,7 @@
   Eeshaan  Jain
 
 
-  | Page not found
+  | projects
 
 </title>
 <meta name="description" content="Eeshaan Jain's Portfolio. Based on [*folio](https://github.com/bogoli/-folio) design.
@@ -38,7 +38,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❄️</text></svg>">
 
 <link rel="stylesheet" href="/assets/css/main.css">
-<link rel="canonical" href="https://eeshaanjain.github.io/404.html">
+<link rel="canonical" href="https://eeshaanjain.github.io/projects/">
 
 
 <!-- Dark Mode -->
@@ -108,6 +108,8 @@
           
           
           
+          
+          
           <li class="nav-item ">
               <a class="nav-link" href="/notes/">
                 notes
@@ -132,9 +134,11 @@
           
           
           
-          <li class="nav-item ">
+          <li class="nav-item active">
               <a class="nav-link" href="/projects/">
                 projects
+                
+                <span class="sr-only">(current)</span>
                 
               </a>
           </li>
@@ -174,12 +178,57 @@
       <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Page not found</h1>
-    <p class="post-description">Looks like there has been a mistake. Nothing exists here.</p>
+    <h1 class="post-title">projects</h1>
+    <p class="post-description">Projects</p>
   </header>
 
   <article>
-    <p>You will be redirected to the main page within 3 seconds. If not redirected, please click <a href="https://eeshaanjain.github.io//">here</a>.</p>
+    <h2 id="table-of-contents">Table of Contents</h2>
+
+<ol>
+  <li><a href="#submod-matroid-opt">Efficient Matroid-constraint-based Submodular Maximization</a></li>
+  <li><a href="#post-hoc-ood">Post-hoc Out of Distribution Detection</a></li>
+  <li><a href="#epidemic-state">Estimation of Epidemic State using Graph Neural Networks</a></li>
+</ol>
+<hr style="border:1px solid gray">
+
+<h3 id="efficient-matroid-constraint-based-submodular-maximization-">
+<ins>Efficient Matroid-constraint-based Submodular Maximization</ins> <a name="submod-matroid-opt"></a>
+</h3>
+<p><i class="fas fa-book"></i> <em>Report</em>: <a href="Accelerated_Continuous_Greedy.pdf">[Click here]</a> <br>
+<i class="fas fa-code-branch"></i> <em>Code:</em> <a href="https://github.com/EeshaanJain/submodlib/tree/matroid" target="_blank" rel="noopener noreferrer">[Click here]</a> <br> 
+<strong>Summary:</strong> Maximization of monotone submodular functions subject to cardinality constraints has been a topic of interest with various greedy algorithms, with many of these algorithms achieving a \(\left(1 - \frac{1}{e}\right)\) approximation on the optimal solution (OPT) at high computational speeds. However, these variants of classical greedy do not work well on matroid constraints, and only provide a \(\frac{1}{2}\) approximation of OPT. To overcome this, CONTINUOUS-GREEDY was introduced which gives a \(\left(1-\frac{1}{e} -\epsilon\right)\) approximation of OPT but it has a \(O(n^8)\) running time. In spite of that, the algorithm is useful and generalizable. An improvement to the algorithm is ACCELERATED-CONTINUOUS-GREEDY introduced which has \(\widetilde{O}(n^2)\) running time and is much more efficient than the previous version. The project creates  support for matroid-based optimization implementation of these two optimization algorithms along with four matroid-constraint-based submodular functions in SUBMODLIB an efficient and scalable Python library for submodular optimization in Python with a C++ optimization engine. We improve the ACCELERATED-CONTINUOUS-GREEDY procedure further, and demonstrate performance on the SAP, GAP and SWP problems.</p>
+
+<hr>
+
+<h3 id="post-hoc-out-of-distribution-detection">
+<ins>Post-hoc Out of Distribution Detection</ins><a name="post-hoc-ood"></a>
+</h3>
+<p><i class="fas fa-book"></i> <em>Report:</em> <a href="Post_Hoc_OOD.pdf">[Click here]</a><br>
+<i class="fab fa-slideshare"></i> <em>Slides:</em> <a href="Post_Hoc_OOD_Slides.pdf">[Click here]</a><br>
+<i class="fas fa-code-branch"></i> <em>Code:</em> <a href="https://github.com/ph-ood/post-hoc-ood" target="_blank" rel="noopener noreferrer">[Click here]</a><br>
+<strong>Summary:</strong> We focus on OOD detection, in a classification setting, after a classifier has already been trained (i.e., a post-hoc/post-training setting). Many popular baselines propose score functions to detect OOD
+data. These score functions should assign low scores to OOD data and high scores to ID data. We introduce a Dirichlet-based scoring function which outperforms other scoring functions, is computationally cheap, can generalize across
+different OOD settings and has a theoretical backing. In cases when the performance is not good
+enough, we provide ways to further improve the separability between the ID and OOD data without
+using a large and diverse auxiliary OOD dataset (like 80 Million Tiny Images and ImageNet-22K)
+for fine-tuning, unlike many other popular approaches. We
+further demonstrate that tuned margins don’t always improve the result over different non-parametric
+energy-based loss functions.</p>
+
+<hr>
+
+<h3 id="estimation-of-epidemic-state-using-graph-neural-networks">
+<ins>Estimation of Epidemic State using Graph Neural Networks</ins><a name="epidemic-state"></a>
+</h3>
+<p><i class="fas fa-book"></i> <em>Report:</em> <a href="Epidemic-State.pdf">[Click here]</a><br>
+<i class="fas fa-code-branch"></i> <em>Code:</em> <a href="https://github.com/EeshaanJain/CS768-Project" target="_blank" rel="noopener noreferrer">[Click here]</a><br>
+<strong>Summary:</strong> Epidemic forecasting provides an opportunity to predict geographic disease spread as well as case counts
+to better inform public health interventions when outbreaks occur. In this project, we firstly explore the
+work already done in the domain of epidemics, using both classical machine learning and deep learning.
+Further, we demonstrate the spread of epidemics using the famous SIR model on random graphs generated by the Erd˝os–Rényi-Gilbert, Watts-Strogatz and Barabási–Albert models. Finally, we construct a
+graph neural network followed by a fully connected network to predict the category (safe/infected/recovered) a person might be in during an epidemic, while monitoring only a fraction of the nodes – which aligns with the practicality of epidemic monitoring.</p>
+
 
   </article>
 
