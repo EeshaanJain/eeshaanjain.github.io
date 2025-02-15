@@ -5,6 +5,27 @@ title: "Research Overview"
 
 <h2 id='publications' class="page-heading">Publications</h1>
 
+  <div class="divider"></div>
+
+  <div class="row">
+    <div class="six columns">
+      <img style="margin-top:0em" src="/images/virtues.pdf">
+      <table>
+        <tr>          
+          <td><a href="https://arxiv.org/pdf/2501.06039">Paper</a></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="six columns">
+
+      <b> AI-powered virtual tissues from spatial proteomics for clinical diagnostics and biomedical discovery </b> 
+      <p> Johann Wenckstern*, <b>Eeshaan Jain*</b>, Kiril Vasilev, Matteo Pariset, Andreas Wicki, Gabriele Gut, Charlotte Bunne <br />ArXiv Preprint  </p>
+    <p> 
+      Spatial proteomics technologies have transformed our understanding of complex tissue architectures by enabling simultaneous analysis of multiple molecular markers and their spatial organization. The high dimensionality of these data, varying marker combinations across experiments and heterogeneous study designs pose unique challenges for computational analysis. Here, we present Virtual Tissues (VirTues), a foundation model framework for biological tissues that operates across the molecular, cellular and tissue scale. VirTues introduces innovations in transformer architecture design, including a novel tokenization scheme that captures both spatial and marker dimensions, and attention mechanisms that scale to high-dimensional multiplex data while maintaining interpretability. Trained on diverse cancer and non-cancer tissue datasets, VirTues demonstrates strong generalization capabilities without task-specific fine-tuning, enabling cross-study analysis and novel marker integration. As a generalist model, VirTues outperforms existing approaches across clinical diagnostics, biological discovery and patient case retrieval tasks, while providing insights into tissue function and disease mechanisms.
+    </p>
+    </div>
+  </div>
 
   <div class="divider"></div>
 
@@ -21,31 +42,12 @@ title: "Research Overview"
     <div class="six columns">
 
       <b> Clique Number Estimation via Differentiable Functions of Adjacency Matrix Permutations </b> 
-      <p> <b>Indradyumna Roy*</b>, Eeshaan  Jain*, Soumen Chakrabarti, Abir De <br /> ICLR 2025  </p>
+      <p> Indradyumna Roy*, <b>Eeshaan  Jain*</b>, Soumen Chakrabarti, Abir De <br /> ICLR 2025  </p>
     <p> MxNet is a fully differentiable clique number estimator that learns from distant supervision without explicit clique demonstrations. We reformulate MCP as detecting dense submatrices via learned permutations within a nested subgraph matching task. </p>
     </div>
   </div>
+
  
-  <div class="divider"></div>
-
-  <div class="row"> 
-    <div class="six columns">
-      <img style="margin-top:0em" src="/images/Data-Paper.png">
-      <table>
-        <tr>          
-          <td><a href="https://openreview.net/forum?id=5pd78GmXC6">Paper</a></td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="six columns">
-
-      <b> Charting the Design Space of Neural Graph Representations for Subgraph Matching </b> 
-      <p>  Vaibhav Raj*, <b>Indradyumna Roy*</b>, Ashwin Ramachandran, Soumen Chakrabarti, Abir De <br /> ICLR 2025  </p>
-    <p> We present a unified design space for neural subgraph matching, uncovering hiterto unexplored design combinations that significantly boost performance. Our study provides key insights and general principles for neural graph representation and interaction.</p>
-    </div>
-  </div>
-
   
   <div class="divider"></div>
 
@@ -64,145 +66,65 @@ title: "Research Overview"
     <div class="six columns">
 
       <b> Graph Edit Distance  with General Costs  Using Neural Set Divergence </b> 
-      <p> Eeshaan  Jain*, <b>Indradyumna Roy*</b>, Saswat Meher, Soumen Chakrabarti, Abir De <br /> NeurIPS 2024  </p>
+      <p> <b>Eeshaan  Jain*</b>, Indradyumna Roy*, Saswat Meher, Soumen Chakrabarti, Abir De <br /> NeurIPS 2024 and LoG 2024 (Extended Abstract)  </p>
     <p> GraphEdx is the first-of-its-kind neural GED framework that incorporates variable edit costs, capable of modeling both symmetric and asymmetric graph (dis)similarities, allowing for more flexible and accurate GED estimation compared to earlier methods. </p>
+    <!-- Button to toggle BibTeX -->
+    <a href="#" onclick="toggleBibtex(); return false;" style="
+      display: inline-block;
+      margin-top: 0em;
+      color: #000;
+      text-decoration: none;
+      font-size: 1em;
+      cursor: pointer;
+    ">
+      <span id="toggleIcon">▶</span> <span id="toggleText">Show BibTeX</span>
+    </a>
+    
+    <!-- Hidden BibTeX code block styled as a neat square -->
+    <div id="bibtexBlock" style="
+      display: none;
+      margin-top: 1em;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      border: 1px solid #ccc;
+      padding: 10px;
+      background-color: #f9f9f9;
+      box-sizing: border-box;
+      ">
+      <pre style="margin: 0; font-family: monospace;">
+@inproceedings{
+anonymous2024graph,
+title={Graph Edit Distance with General Costs Using Neural Set Divergence},
+author={Eeshaan Jain and Indradyumna Roy and Saswat Meher and Soumen Chakrabarti and Abir De},
+booktitle={The Thirty-eighth Annual Conference on Neural Information Processing Systems},
+year={2024},
+url={https://openreview.net/forum?id=u7JRmrGutT},
+  }
+        </pre>
+      </div>
     </div>
   </div>
+
  
   <div class="divider"></div>
 
-  <div class="row"> 
-    <div class="six columns">
-      <img style="margin-top:0em" src="/images/EINSMATCH.png">
-      <table>
-        <tr>          
-          <td><a href="https://openreview.net/forum?id=udTwwF7tks">Paper</a></td>
-	        <td><a href="https://github.com/structlearning/isonetpp">Code</a></td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="six columns">
-
-      <b> Iteratively Refined Early Interaction Alignment for Subgraph Matching based Graph Retrieval </b> 
-      <p> Ashwin Ramachandran*, Vaibhav Raj*, <b>Indradyumna Roy</b>, Soumen Chakrabarti, Abir De <br /> NeurIPS 2024  </p>
-    <p> IsoNet++ is an early interaction graph neural network,  where the approximate injective alignments between any given graph pair gets progressively refined with successive rounds, resulting in significantly better retrieval performance than existing methods. </p>
-    </div>
-  </div>
 
 
-  <div class="divider"></div>
-
-  <div class="row">
-    <div class="six columns">
-      <img style="margin-top:0em" src="/images/FOURIERHASHNET.png">
-      <table>
-        <tr>          
-	<!--<td><a href="https://arxiv.org/abs/2012.08974">Arxiv</a></td>-->
-          <td><a href="/pdfs/2023_FourierHashNet.pdf">Paper</a></td>
-	  <!--<td><a href="/pdfs/IsoNet_supp.pdf">Supplementary</a></td>-->
-	  <td><a href="https://github.com/Indradyumna/FourierHashNet">Code</a></td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="six columns">
-
-      <b> Locality Sensitive Hashing in Fourier Frequency Domain For Soft Set Containment Search </b> 
-      <p> <b>Indradyumna Roy</b>, Rishi Agarwal, Soumen Chakrabarti, Anirban Dasgupta, Abir De <br /> NeurIPS 2023  (<span style='color:red'>Spotlight</span>)  </p>
-    <p> FourierHashNet is an asymmetric LSH for hinge distance, which first transforms the hinge distance into a bounded dominance similarity measure, which is then Fourier-transformed into an expectation of inner products of functions in the frequency domain. Finally, the expectations are approximated with an importance-sampled estimate, which allows for the use of traditional Random-Hyperplanes LSH. </p>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <div class="row">
-    <div class="six columns">
-      <img style="margin-top:0em" src="/images/MCSNET.png">
-      <table>
-        <tr>          
-	<!--<td><a href="https://arxiv.org/abs/2012.08974">Arxiv</a></td>-->
-          <td><a href="/pdfs/2022_NeuralMcs.pdf">Paper</a></td>
-	  <!--<td><a href="/pdfs/IsoNet_supp.pdf">Supplementary</a></td>-->
-          <td><a href="https://github.com/Indradyumna/MCSNET">Code</a></td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="six columns">
-
-      <b> Maximum Common Subgraph Guided Graph Retrieval: Late and Early Interaction Networks </b> 
-      <p> <b>Indradyumna Roy</b>, Soumen Chakrabarti, Abir De <br /> NeurIPS 2022 </p>
-    <p> We propose neural architectures for two distinct variants of the MCS metric. The customized late interaction models for each variant, outperform SOTA in terms of retrieval accuracy and speed. Furthermore, an unified early interaction network is proposed, which works well for both variants and affords an additional boost in accuracy at the cost of some retrieval speed.  </p>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <div class="row">
-    <div class="six columns">
-      <img style="margin-top:0em" src="/images/ISONET_img.png">
-      <table>
-        <tr>          
-	<!--<td><a href="https://arxiv.org/abs/2012.08974">Arxiv</a></td>-->
-          <td><a href="/pdfs/IsoNet_main.pdf">Main</a></td>
-          <td><a href="/pdfs/IsoNet_supp.pdf">Supplementary</a></td>
-          <td><a href="https://github.com/Indradyumna/ISONET">Code</a></td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="six columns">
-
-      <b> Interpretable Neural Subgraph Matching for Graph Retrieval </b>
-      <p> <b>Indradyumna Roy</b>, Venkata Sai Velugoti, Soumen Chakrabarti, Abir De <br /> AAAI 2022 </p>
-    <p> ISONET proposes a novel interpretable neural edge alignment formulation, which enables identification of the underlying subgraph in a corpus graph, which is relevant (isomorphic) to the given query graph. Training for ISONET is done using only binary relevance lavels on graph pairs, without any fine-grained ground truth information about node or edge alignments. </p>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <div class="row">
-    <div class="six columns">
-      <img style="margin-top:0em" src="/images/PermGNN.png">
-      <table>
-        <tr>          
-          <td><a href="https://arxiv.org/abs/2012.08974">Arxiv</a></td>
-          <td><a href="https://www.youtube.com/watch?v=i7WOrkwSL24&t=103s">Talk</a></td>
-          <td><a href="https://github.com/Indradyumna/PermGNN">Code</a></td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="six columns">
-
-      <b> Adversarial Permutation Guided Node Representations for Link Prediction </b>
-      <p> <b>Indradyumna Roy</b>, Abir De, Soumen Chakrabarti <br /> AAAI 2021 </p>
-    <p> PermGNN casts the link prediction objective as an adversarial game, which allows for usage of order-sensitive RNNs as neighborhood feature aggregators. We ensure permutation insensitivity by optimizing a min-max ranking loss function with respect to the smooth surrogates of adversarial permutations. </p>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-
-  <div class="row">
-    <div class="six columns">
-      <img style="margin-top:0em" src="/images/Plagiarism.png">
-      <table>
-        <tr>          
-          <td><a href="https://www.isca-speech.org/archive/pdfs/interspeech_2012/de12_interspeech.pdf">Paper</a></td>
-          <td><a href="https://arxiv.org/abs/1503.00022">Arxiv</a></td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="six columns">
-
-      <b> Plagiarism Detection In Polyphonic Music Using Monaural Signal Separation </b>
-      <p> Soham De, <b>Indradyumna Roy</b>, Tarunima Prabhakar, Kriti Suneja, Sourish Chaudhuri, Rita Singh, Bhiksha Raj<br /> INTERSPEECH 2012 </p>
-    <p>  We present a novel feature space for audio derived from compositional modelling techniques, commonly used in signal separation, that provides a mechanism to account for polyphony without incurring an inordinate amount of computational overhead. </p>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
+  <script>
+    function toggleBibtex() {
+      var bibtexDiv = document.getElementById("bibtexBlock");
+      var toggleIcon = document.getElementById("toggleIcon");
+      var toggleText = document.getElementById("toggleText");
+      if (bibtexDiv.style.display === "none") {
+        bibtexDiv.style.display = "block";
+        toggleIcon.textContent = "▼";
+        toggleText.textContent = "Hide BibTeX";
+      } else {
+        bibtexDiv.style.display = "none";
+        toggleIcon.textContent = "▶";
+        toggleText.textContent = "Show BibTeX";
+      }
+    }
+  </script>
+  

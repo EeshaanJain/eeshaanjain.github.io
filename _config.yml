@@ -5,10 +5,10 @@ gems:
   - jekyll-sitemap
   - jekyll-redirect-from
 
-name: Indradyumna Roy
-url: indradyumna.github.io
-enforce_ssl: indradyumna.github.io
-description: Indradyumna's personal website
+name: Eeshaan Jain
+url: eeshaanjain.github.io
+enforce_ssl: eeshaanjain.github.io
+description: Eeshaan's personal website
 
 collections:
   ml:
