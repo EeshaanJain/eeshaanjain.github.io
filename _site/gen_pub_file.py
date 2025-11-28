@@ -6,12 +6,14 @@ Publication Manager - Automatically generate publication HTML from structured da
 class Publication:
     def __init__(self, title, authors, venue, abstract, paper_url, 
                  image_path, bibtex, code_url=None, arxiv_url=None, 
+                 dataset_url=None,
                  author_to_bold="Eeshaan Jain"):
         self.title = title
         self.authors = self._bold_author(authors, author_to_bold)
         self.venue = venue
         self.abstract = abstract
         self.paper_url = paper_url
+        self.dataset_url = dataset_url
         self.image_path = image_path
         self.bibtex = bibtex
         self.code_url = code_url
@@ -29,6 +31,8 @@ class Publication:
             links.append(f'<td><a href="{self.code_url}">Code</a></td>')
         if self.arxiv_url:
             links.append(f'<td><a href="{self.arxiv_url}">Arxiv</a></td>')
+        if self.dataset_url:
+            links.append(f'<td><a href="{self.dataset_url}">Dataset</a></td>')
         
         html = f'''<div class="publication">
   <div class="row">
@@ -143,19 +147,21 @@ title: "Research Overview"
 publications = [
     Publication(
         title="MTBBench: A Multimodal Sequential Clinical Decision-Making Benchmark in Oncology",
-        authors="Eeshaan Jain, Johann Wenckstern, Benedikt von Querfurth, Charlotte Bunne",
+        authors="Eeshaan Jain*, Kiril Vasilev*, Alexandre Misrahi*, Phil F Cheng, Petros Liakopoulos, Olivier Michielin, Michael Moor , Charlotte Bunne",
         venue="The Thirty-eighth Annual Conference on Neural Information Processing Systems (NeurIPS 2025)",
         abstract="Multimodal Large Language Models (LLMs) hold promise for biomedical reasoning, but current benchmarks fail to capture the complexity of real-world clinical workflows. Existing evaluations primarily assess unimodal, decontextualized question-answering, overlooking multi-agent decision-making environments such as Molecular Tumor Boards (MTBs). MTBs bring together diverse experts in oncology, where diagnostic and prognostic tasks require integrating heterogeneous data and evolving insights over time. Current benchmarks lack this longitudinal and multimodal complexity. We introduce MTBBench, an agentic benchmark simulating MTB-style decision-making through clinically challenging, multimodal, and longitudinal oncology questions. Ground truth annotations are validated by clinicians via a co-developed app, ensuring clinical relevance. We benchmark multiple open and closed-source LLMs and show that, even at scale, they lack reliability---frequently hallucinating, struggling with reasoning from time-resolved data, and failing to reconcile conflicting evidence or different modalities. To address these limitations, MTBBench goes beyond benchmarking by providing an agentic framework with foundation model-based tools that enhance multi-modal and longitudinal reasoning, leading to task-level performance gains of up to 9.0% and 11.2%, respectively.     Overall, MTBBench offers a challenging and realistic testbed for advancing multimodal LLM reasoning, reliability, and tool-use with a focus on MTB environments in precision oncology.",
-        paper_url="https://openreview.net/forum?id=anzoPBV4jI",
-        code_url="https://github.com/cronosbenchmark/cronos",
+        paper_url="https://arxiv.org/abs/2511.20490",
+        code_url="https://github.com/bunnelab/MTBBench",
+        dataset_url="https://huggingface.co/datasets/EeshaanJain/MTBBench",
         image_path="/images/MTBBench.pdf",
-        bibtex=None,
-#         bibtex='''@article{jain2025mavis,
-#   title={Test-Time View Selection for Multi-Modal Decision Making},
-#   author={Jain, Eeshaan and Wenckstern, Johann and von Querfurth, Benedikt and Bunne, Charlotte},
-#   journal={ICLR 2025 Workshop},
-#   year={2025}
-# }'''
+        bibtex='''@inproceedings{
+vasilev2025mtbbench,
+title={MTBBench: A Multimodal Sequential Clinical Decision-Making Benchmark in Oncology},
+author={Kiril Vasilev and Alexandre Misrahi and Eeshaan Jain and Phil F Cheng and Petros Liakopoulos and Olivier Michielin and Michael Moor and Charlotte Bunne},
+booktitle={The Thirty-ninth Annual Conference on Neural Information Processing Systems Datasets and Benchmarks Track},
+year={2025},
+url={https://openreview.net/forum?id=anzoPBV4jI}
+}'''
     ),
 
     Publication(

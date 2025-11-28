@@ -57,6 +57,7 @@
                 <ul>
                     <li><a href="/"> About </a></li>
                     <li><a href="/research"> Publications</a></li>
+                    <li><a href="pdfs/CV.pdf" target="_blank"> <i class="fa fa-file-pdf-o" style="color:#0e76a8"> </i> CV </a></li>
                     <!-- <li><a href="/research"> CV</a></li> -->
 <!--                     <li><a href="/about">About</a></li> -->
                 </ul>
@@ -74,14 +75,14 @@
       <img style="margin-top:0em" src="/images/MTBBench.pdf">
       <table>
         <tr>          
-          <td><a href="https://openreview.net/forum?id=anzoPBV4jI">Paper</a></td><td><a href="https://github.com/cronosbenchmark/cronos">Code</a></td>
+          <td><a href="https://arxiv.org/abs/2511.20490">Paper</a></td><td><a href="https://github.com/bunnelab/MTBBench">Code</a></td><td><a href="https://huggingface.co/datasets/EeshaanJain/MTBBench">Dataset</a></td>
         </tr>
       </table>
     </div>
 
     <div class="six columns">
       <b>MTBBench: A Multimodal Sequential Clinical Decision-Making Benchmark in Oncology</b> 
-      <p><b>Eeshaan Jain</b>, Johann Wenckstern, Benedikt von Querfurth, Charlotte Bunne<br />The Thirty-eighth Annual Conference on Neural Information Processing Systems (NeurIPS 2025)</p>
+      <p><b>Eeshaan Jain</b>*, Kiril Vasilev*, Alexandre Misrahi*, Phil F Cheng, Petros Liakopoulos, Olivier Michielin, Michael Moor , Charlotte Bunne<br />The Thirty-eighth Annual Conference on Neural Information Processing Systems (NeurIPS 2025)</p>
       <p>Multimodal Large Language Models (LLMs) hold promise for biomedical reasoning, but current benchmarks fail to capture the complexity of real-world clinical workflows. Existing evaluations primarily assess unimodal, decontextualized question-answering, overlooking multi-agent decision-making environments such as Molecular Tumor Boards (MTBs). MTBs bring together diverse experts in oncology, where diagnostic and prognostic tasks require integrating heterogeneous data and evolving insights over time. Current benchmarks lack this longitudinal and multimodal complexity. We introduce MTBBench, an agentic benchmark simulating MTB-style decision-making through clinically challenging, multimodal, and longitudinal oncology questions. Ground truth annotations are validated by clinicians via a co-developed app, ensuring clinical relevance. We benchmark multiple open and closed-source LLMs and show that, even at scale, they lack reliability---frequently hallucinating, struggling with reasoning from time-resolved data, and failing to reconcile conflicting evidence or different modalities. To address these limitations, MTBBench goes beyond benchmarking by providing an agentic framework with foundation model-based tools that enhance multi-modal and longitudinal reasoning, leading to task-level performance gains of up to 9.0% and 11.2%, respectively.     Overall, MTBBench offers a challenging and realistic testbed for advancing multimodal LLM reasoning, reliability, and tool-use with a focus on MTB environments in precision oncology.</p>
       
       <a href="#" class="bib-toggle" style="
@@ -107,7 +108,14 @@
           box-sizing: border-box;
         ">
       <pre style="margin: 0; font-family: monospace;">
-None
+@inproceedings{
+vasilev2025mtbbench,
+title={MTBBench: A Multimodal Sequential Clinical Decision-Making Benchmark in Oncology},
+author={Kiril Vasilev and Alexandre Misrahi and Eeshaan Jain and Phil F Cheng and Petros Liakopoulos and Olivier Michielin and Michael Moor and Charlotte Bunne},
+booktitle={The Thirty-ninth Annual Conference on Neural Information Processing Systems Datasets and Benchmarks Track},
+year={2025},
+url={https://openreview.net/forum?id=anzoPBV4jI}
+}
         </pre>
       </div>
     </div>
