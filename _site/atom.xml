@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>Eeshaan Jain</title>
- <link href="http://localhost:4000/atom.xml" rel="self"/>
- <link href="http://localhost:4000/"/>
- <updated>2026-07-09T09:16:09-07:00</updated>
- <id>http://localhost:4000</id>
+ <link href="eeshaanjain.github.io/atom.xml" rel="self"/>
+ <link href="eeshaanjain.github.io/"/>
+ <updated>2026-09-02T21:56:29-07:00</updated>
+ <id>eeshaanjain.github.io</id>
  <author>
    <name>Eeshaan Jain</name>
  </author>

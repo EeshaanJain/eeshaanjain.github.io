@@ -10,7 +10,7 @@ title: "Eeshaan Jain"
 
 <div class="row">
 	<div class="seven columns">
-		<p> Summer Intern @ AIBT & Regev Lab, Genentech, South San Fransisco<br>
+		<p> ML Intern @ AIBT & Regev Lab, Genentech, South San Francisco<br>
       2nd year PhD student @ <a href="https://www.aimm.epfl.ch/"> AIMM, EPFL</a> under Prof. <a href="https://www.aimm.epfl.ch/"> Charlotte Bunne </a> <br>
       Bachelor's + Master's @ IIT Bombay, Institute Silver Medalist (Rank #2) <br>
       Exchange student @ EPFL, Switzerland in Computer Science for Autumn 2022-23<br> 
@@ -65,7 +65,10 @@ title: "Eeshaan Jain"
         <ul>
           <li> Agents and Benchmarks for Molecular Tumor Board @ AstraZeneca, Applied Data Science Group, Feb 2026 </li>
           <li> Test-Time View Selection for Multi-Modal Decision Making @ MLGenX Workshop, ICLR 2025 </li>
+        </ul>
       </p>
+
+      <p> I have reviewed for: NeurIPS 2025, ICLR 2026, ICML 2026, NeurIPS 2026 </p>
 
 
 	</div>
@@ -97,8 +100,117 @@ title: "Eeshaan Jain"
 </ul>  -->
 
 
+<h1 class="page-heading">Highlights</h1>
+
+<style>
+  .highlights-scroll {
+    display: flex;
+    gap: 1.25rem;
+    overflow-x: auto;
+    padding: 0.5rem 0.25rem 1.25rem;
+    margin: 0 0 1rem 0;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .highlight-card {
+    flex: 0 0 320px;
+    max-width: 320px;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .highlight-card:hover {
+    box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+    transform: translateY(-2px);
+  }
+  .highlight-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    display: block;
+    margin: 0;
+  }
+  .highlight-card .card-body {
+    padding: 1rem 1.1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+  }
+  .highlight-card .card-venue {
+    color: #0e76a8;
+    font-style: italic;
+    font-size: 0.9rem;
+    margin: 0.35rem 0 0.5rem;
+  }
+  .highlight-card .card-title {
+    font-weight: 700;
+    line-height: 1.3;
+    font-size: 1rem;
+  }
+  .highlight-card .card-desc {
+    font-size: 0.9rem;
+    color: #444;
+    margin: 0;
+  }
+  .highlight-card .card-links {
+    margin-top: auto;
+    padding-top: 0.8rem;
+  }
+  .highlight-card .card-links a {
+    display: inline-block;
+    margin-right: 0.6rem;
+    padding: 0.2rem 0.7rem;
+    border: 1px solid #0e76a8;
+    border-radius: 999px;
+    color: #0e76a8;
+    font-size: 0.82rem;
+    text-decoration: none;
+  }
+  .highlight-card .card-links a:hover {
+    background: #0e76a8;
+    color: #fff;
+  }
+</style>
+
+<div class="highlights-scroll">
+  <div class="highlight-card">
+    <img src="/images/virtues.png" alt="VirTues">
+    <div class="card-body">
+      <span class="card-title">The Virtual Tissues foundation model resolves spatial proteomics across scales</span>
+      <span class="card-venue">Nature, 2026</span>
+      <p class="card-desc">VirTues is the first foundation model for spatial proteomics. Pretrained on 12,000+ multiplexed images from 5,300+ patients across 30+ cohorts and four imaging technologies, it runs cell segmentation and typing zero-shot in a single pass.</p>
+      <span class="card-links">
+        <a href="https://www.nature.com/articles/s41586-026-10884-y" target="_blank">Nature</a>
+        <a href="https://github.com/bunnelab/virtues" target="_blank">Code</a>
+      </span>
+    </div>
+  </div>
+
+  <div class="highlight-card">
+    <img src="/images/MTBBench.png" alt="MTBBench">
+    <div class="card-body">
+      <span class="card-title">MTBBench: A Multimodal Sequential Clinical Decision-Making Benchmark in Oncology</span>
+      <span class="card-venue">NeurIPS 2025</span>
+      <p class="card-desc">An agentic benchmark simulating Molecular Tumor Board decision-making through multimodal, longitudinal oncology questions, paired with a foundation-model tool framework that improves LLM reasoning and reliability.</p>
+      <span class="card-links">
+        <a href="https://arxiv.org/abs/2511.20490" target="_blank">Paper</a>
+        <a href="https://github.com/bunnelab/MTBBench" target="_blank">Code</a>
+      </span>
+    </div>
+  </div>
+</div>
+
+
 <h1 class="page-heading">News</h1>
 <ul>
+  <li><b>Virtual Tissues (VirTues)</b> — Our foundation model for spatial proteomics was published in <a href="https://www.nature.com/articles/s41586-026-10884-y">Nature</a> 🎉</li>
+
   <li><b>MTBBench</b> — Our benchmark on multimodal sequential clinical decision-making (<a href="https://arxiv.org/pdf/2501.06039"><i>MTBBench: A Multimodal Sequential Clinical Decision-Making Benchmark in Oncology</i></a>) was accepted to <a href="https://neurips.cc">NeurIPS 2025</a> 🎉</li>
   
   <li><b>AI-powered Virtual Tissues</b> — Awarded <b>Best Paper</b> at <a href="https://iclr.cc">ICLR 2025 MLGenX Workshop</a> 🎉</li>
