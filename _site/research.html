@@ -76,6 +76,110 @@
 <div class="publication">
   <div class="row">
     <div class="six columns">
+      <img style="margin-top:0em" src="/images/echo-k.png">
+      <table>
+        <tr>
+          <td><a href="#">Paper [TBD]</a></td><td><a href="https://github.com/bunnelab/echo-k">Code</a></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="six columns">
+      <b>Measure Less, Know More: Self-Supervised Test-Time Feature Acquisition</b>
+      <p><b>Eeshaan Jain</b>, Linus Bleistein, Bart Deplancke, Charlotte Bunne<br />The Fortieth Annual Conference on Neural Information Processing Systems (NeurIPS 2026)</p>
+      <p>Recent progress in multimodal, high-dimensional learning has enabled foundation models to process heterogeneous, large-scale data. However, at test time, acquiring all features or modalities can be prohibitively costly and often redundant. Sequentially selecting informative modalities is therefore critical, yet challenging when the downstream task or prediction target is unknown. To this end, we introduce ECHO-k, a task-agnostic and self-supervised learning principle for modality acquisition: we use a deep model’s internal pretrained representations (e.g., from a foundation model) as proxy targets that summarize cross-modal information. We provide theoretical guarantees in a linear model setting that motivate a reinforcement learning (RL) policy for sequential modality selection. Across benchmarks, the resulting acquisition strategies transfer reliably and achieve state-of-the-art performance on downstream tasks that are entirely unseen during selection. Our method provides a principled route to cost-aware test-time deployment, with implications for any multimodal system where measurements are expensive or time-constrained, and downstream tasks unknown a priori.</p>
+
+      <a href="#" class="bib-toggle" style="
+    display: inline-block;
+    margin-top: 1em;
+    color: #000;
+    text-decoration: none;
+    font-size: 1em;
+    cursor: pointer;
+  ">
+    <span class="toggle-icon">▶</span> <span class="toggle-text">Show BibTeX</span>
+    </a>
+
+    <div class="bib-block" style="
+          display: none;
+          margin-top: 1em;
+          width: 100%;
+          height: 100%;
+          overflow: auto;
+          border: 1px solid #ccc;
+          padding: 10px;
+          background-color: #f9f9f9;
+          box-sizing: border-box;
+        ">
+      <pre style="margin: 0; font-family: monospace;">
+@inproceedings{jain2026measure,
+  title={Measure Less, Know More: Self-Supervised Test-Time Feature Acquisition},
+  author={Jain, Eeshaan and Bleistein, Linus and Deplancke, Bart and Bunne, Charlotte},
+  booktitle={The Fortieth Annual Conference on Neural Information Processing Systems (NeurIPS 2026)},
+  year={2026}
+}
+        </pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="publication">
+  <div class="row">
+    <div class="six columns">
+      <img style="display:block; margin:0 auto; width:50%;" src="/images/spora_figures.png">
+      <table>
+        <tr>
+          <td><a href="#">Paper [TBD]</a></td><td><a href="https://github.com/bunnelab/spora-io">Code: spora[io]</a></td><td><a href="https://github.com/bunnelab/spora-bench">Code: spora[bench]</a></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="six columns">
+      <b>spora: A Unified Multimodal Dataset for Spatial Proteomics</b>
+      <p>Benedikt von Querfurth*, <b>Eeshaan Jain</b>*, Johann Wenckstern*, Lukas Klein*, Phil F Cheng, Yexiang Cheng, Cédric Vincent-Cuaz, Pascal Frossard, Martina Haberecker, Andreas Wicki, Olivier Michielin, Charlotte Bunne<br />The Fortieth Annual Conference on Neural Information Processing Systems (NeurIPS 2026), Evaluations &amp; Datasets Track</p>
+      <p>Spatial proteomics (SP) captures the molecular composition and spatial organization of tissues at single-cell resolution, opening a direct view of the cellular ecosystems that drive disease. Protein panels, acquisition platforms, and tissue contexts differ from one cohort to the next, and a coherent picture of tissue biology can only emerge from models trained to bridge this heterogeneity. Foundation models offer the natural path forward, but their training depends on large, harmonized corpora that span platforms, panels, and cohorts. No public resource currently approaches that scale; available data sit in small, narrowly scoped releases with incompatible formats and conventions. We present spora, a large-scale multimodal SP dataset of 12,596 standardized multiplex images from 5,254 patients across 31 cohorts and four major SP technologies. Curated with biomedical experts, spora provides model-training-ready formats together with cell and tissue segmentations, structured clinical metadata, and, where available, paired H&amp;E enabling the training of virtual staining models. It is complemented by spora [io], a unified interface for tiling, sampling, and standardization across all cohorts and modalities, and spora [bench], a benchmark suite spanning cell- and patient-level tasks across 11 cohorts that places current SP foundation models on common ground against task-specific baselines for the first time.</p>
+
+      <a href="#" class="bib-toggle" style="
+    display: inline-block;
+    margin-top: 1em;
+    color: #000;
+    text-decoration: none;
+    font-size: 1em;
+    cursor: pointer;
+  ">
+    <span class="toggle-icon">▶</span> <span class="toggle-text">Show BibTeX</span>
+    </a>
+
+    <div class="bib-block" style="
+          display: none;
+          margin-top: 1em;
+          width: 100%;
+          height: 100%;
+          overflow: auto;
+          border: 1px solid #ccc;
+          padding: 10px;
+          background-color: #f9f9f9;
+          box-sizing: border-box;
+        ">
+      <pre style="margin: 0; font-family: monospace;">
+@inproceedings{querfurth2026spora,
+  title={spora: A Unified Multimodal Dataset for Spatial Proteomics},
+  author={von Querfurth, Benedikt and Jain, Eeshaan and Wenckstern, Johann and Klein, Lukas and Cheng, Phil F and Cheng, Yexiang and Vincent-Cuaz, C{\'e}dric and Frossard, Pascal and Haberecker, Martina and Wicki, Andreas and Michielin, Olivier and Bunne, Charlotte},
+  booktitle={The Fortieth Annual Conference on Neural Information Processing Systems (NeurIPS 2026)},
+  year={2026}
+}
+        </pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+<div class="publication">
+  <div class="row">
+    <div class="six columns">
       <img style="margin-top:0em" src="/images/virtues.png">
       <table>
         <tr>
