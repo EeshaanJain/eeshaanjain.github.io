@@ -10,20 +10,14 @@ url: eeshaanjain.github.io
 enforce_ssl: eeshaanjain.github.io
 description: Eeshaan's personal website
 
-collections:
-  ml:
-    output: true
-  math:
-    output: true
+exclude:
+  - legacy
+  - Gemfile
+  - Gemfile.lock
 
 defaults:
   - scope:
       path: ""
-      type: ml
+      type: posts
     values:
-      layout: post
-  - scope:
-      path: ""
-      type: math
-    values:
-      layout: post
+      layout: blog-post

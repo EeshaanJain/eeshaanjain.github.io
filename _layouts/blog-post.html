@@ -1,0 +1,21 @@
+---
+layout: layout
+---
+
+<article class="blog-post">
+  <h2 class="page-heading">{{ page.title }}</h2>
+  <div class="post-meta">
+    <span>{{ page.date | date: "%B %-d, %Y" }}</span>
+    <span>&middot; {{ content | number_of_words | divided_by: 200 | plus: 1 }} min read</span>
+    {% for tag in page.tags %}<span class="badge">{{ tag }}</span>{% endfor %}
+  </div>
+
+  <div class="post-body">
+    {{ content }}
+  </div>
+
+  <nav class="post-nav">
+    <a class="btn-outline" href="{{site.github.url}}/blog">&larr; All posts</a>
+    {% if page.next %}<a class="btn-outline" href="{{ page.next.url }}">{{ page.next.title | truncate: 28 }} &rarr;</a>{% endif %}
+  </nav>
+</article>

@@ -8,7 +8,9 @@
     {{ site.name }}</title>
     <meta name="description" content="Eeshaan Jain's Personal Website'">
 
+    <script src="{{site.github.url}}/js/theme.js"></script>
     <link type="text/css" rel="stylesheet" href="{{site.github.url}}/css/main.css">
+    <link type="text/css" rel="stylesheet" href="{{site.github.url}}/css/theme.css">
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -16,16 +18,12 @@
     <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
 
  <!-- <link rel="shortcut icon" href="{{site.github.url}}/favicon.ico"> -->
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
-<link rel="manifest" href="favicon_io/site.webmanifest"> 
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="/favicon_io/site.webmanifest"> 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
 <script type="text/javascript" src="{{site.github.url}}/js/menu.js"></script>
-
-{% if jekyll.environment == 'production' %}
-{% include analytics.html %}
-{% endif %}
 
 </head>
