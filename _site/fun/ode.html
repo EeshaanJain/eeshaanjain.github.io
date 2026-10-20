@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>    
+      ODEs &ndash;
+    
+    Eeshaan Jain</title>
+    <meta name="description" content="Eeshaan Jain's Personal Website'">
+
+    <script src="/js/theme.js"></script>
+    <link type="text/css" rel="stylesheet" href="/css/main.css">
+    <link type="text/css" rel="stylesheet" href="/css/theme.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="/css/fira_font.css">
+    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+ <!-- <link rel="shortcut icon" href="/favicon.ico"> -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="/favicon_io/site.webmanifest"> 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js"></script>
+<script type="text/javascript" src="/js/menu.js"></script>
+
+</head>
+
+
+<body>
+
+    <nav id="menu" class="menu">
+      <header>
+        <section class="menu-section">
+          <h3 class="menu-section-title">Menu</h3>
+          <ul class="menu-section-list">
+              <li><a class="page-link" href="/">About</a>
+              <li><a class="page-link" href="/research">Research</a></li>
+              <li><a class="page-link" href="/blog">Blog</a></li>
+              <li class="menu-group"><span class="menu-group-label">Fun</span></li>
+              <li><a class="page-link menu-sub" href="/fun/ode">ODEs</a></li>
+          </ul>
+        </section>
+      </header>
+    </nav>
+
+
+    <main id="panel">
+      <div class="page-content">
+        <div class="wrapper container">
+          <header>
+            <nav class="site-header">
+              <div class="row">
+                <div class="menu-toggle"><button class="toggle-button"><i class="icon fa fa-bars"></i></button></div>
+
+                <div class="site-title"><a href="/">Eeshaan Jain</a></div>
+
+              </div>
+              <div class="desktop-menu">
+                <ul>
+                    <li><a href="/"> About </a></li>
+                    <li><a href="/research"> Publications</a></li>
+                    <li><a href="/blog"> Blog </a></li>
+                    <li class="nav-dropdown">
+                      <button type="button" class="nav-trigger" aria-haspopup="true" aria-expanded="false" aria-controls="nav-fun-menu">Fun</button>
+                      <div class="nav-dropdown-menu" id="nav-fun-menu">
+                        <a href="/fun/ode" aria-current="page">ODEs</a>
+                      </div>
+                    </li>
+                    <li><a href="/pdfs/CV.pdf" target="_blank"> <i class="fa fa-file-pdf-o" style="color:#0e76a8"> </i> CV </a></li>
+                    <!-- <li><a href="/research"> CV</a></li> -->
+<!--                     <li><a href="/about">About</a></li> -->
+                </ul>
+              </div>
+            </nav>
+          </header>
+
+
+          <p class="crumb"><span>Fun</span> <span aria-hidden="true">/</span> <span>ODEs</span></p>
+<h2 class="page-heading">ODEs</h2>
+
+<p class="fun-lead">The comets drifting behind this page are trajectories of a differential equation. Write your own below, or pick one from the gallery, and they switch to it. Press <b>?</b> at the bottom right to see the equations of whatever is running.</p>
+
+<div id="ode-editor"></div>
+<div id="ode-gallery"></div>
+
+
+        </div>
+
+      </div>
+
+      <div class="invisible-divider"></div>
+      <footer class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="force seven columns">
+        <ul class="contact-list">
+          <li class="social-links">
+            <a href="https://scholar.google.com/citations?user=r5rqqJEAAAAJ&hl=en" target="_blank">
+              <i class="ai ai-google-scholar ai-10x" style="color:#0e76a8"> </i> Eeshaan Jain
+            </a>
+            <a href="https://github.com/EeshaanJain/" target="_blank">
+              <i class="fa fa-github fa-10x" style="color:#211F1F"> </i> EeshaanJain
+            </a>
+            <a href="https://www.linkedin.com/in/eeshaan-jain" target="_blank">
+              <i class="fa fa-linkedin fa-10x" style="color:#0e76a8"> </i> eeshaan-jain
+            </a>
+            <a href="https://twitter.com/eeshaan_jain" target="_blank"> 
+           <i class="fa fa-x-twitter fa-10x" style="color:#211F1F"></i> eeshaan_jain
+            </a>
+            <a href="https://bsky.app/profile/eeshaanjain.bsky.social" target="_blank"> 
+              <i class="fa fa-bluesky fa-10x" style="color:#3A83F7"></i> eeshaanjain
+               </a>
+            <!-- <a href="/pdfs/IR_CV.pdf" target="_blank">
+              <i class="fa fa-file-pdf-o ai-10x" style="color:#0e76a8"> </i>CV -->
+            <!-- </a> -->
+          </li>
+        </ul>
+      </div>
+      <div class="force five columns">
+        <p class="site-description">
+          <a href="mailto:eeshaan.jain@epfl.ch" style="color:#211F1F">eeshaan (dot) jain (at) epfl (dot) ch</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    </main>
+
+  <script src="/js/odes.js"></script>
+  <script src="/js/attractors.js" defer></script>
+  </body>
+
+</html>

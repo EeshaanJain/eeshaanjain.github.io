@@ -43,6 +43,8 @@
     });
 
     sync();
-    document.body.appendChild(btn);
+    var group = document.querySelector('.float-group');
+    if (!group) { group = document.createElement('div'); group.className = 'float-group'; document.body.appendChild(group); }
+    group.appendChild(btn);
   });
 })();

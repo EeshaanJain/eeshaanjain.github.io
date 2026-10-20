@@ -15,6 +15,8 @@
   --radius: 0.5rem;
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
   --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.10);
+  --destructive: #c4262e;
+  --scrim: rgba(255, 255, 255, 0.7);      /* veil behind text while the background is on: higher alpha = fainter comets there */
 }
 html[data-theme="dark"] {
   color-scheme: dark;
@@ -29,17 +31,25 @@ html[data-theme="dark"] {
   --primary-foreground: #14161a;
   --ring: rgba(109, 164, 235, 0.4);
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --destructive: #f0868b;
+  --scrim: rgba(20, 22, 26, 0.7);
   --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.55);
 }
 
 /* =========================================================
-   Theme switch: shadcn "outline" icon button
+   Floating buttons (theme, background on/off, randomize): shadcn "outline" icon buttons
    ========================================================= */
-.theme-switch {
+.float-group {
   position: fixed;
   right: 16px;
   bottom: 16px;
   z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.theme-switch, .float-btn {
+  position: relative;
   width: 36px;
   height: 36px;
   padding: 0;
@@ -55,9 +65,9 @@ html[data-theme="dark"] {
   transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   -webkit-tap-highlight-color: transparent;
 }
-.theme-switch:hover { background: var(--accent); }
-.theme-switch:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--ring); border-color: var(--primary); }
-.theme-switch svg {
+.theme-switch:hover, .float-btn:hover { background: var(--accent); }
+.theme-switch:focus-visible, .float-btn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--ring); border-color: var(--primary); }
+.theme-switch svg, .float-btn svg {
   position: absolute;
   width: 18px;
   height: 18px;
@@ -74,16 +84,99 @@ html[data-theme="dark"] {
 html[data-theme="dark"] .theme-switch .icon-sun       { transform: rotate(90deg) scale(0); opacity: 0; }
 html[data-theme="dark"] .theme-switch .icon-snowflake { transform: rotate(0) scale(1);     opacity: 1; }
 
+/* "?" button: disabled until there is a system to describe */
+.float-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.float-btn:disabled:hover { background: var(--background); }
+
+/* the equations popover (shadcn Popover look) */
+.ode-pop {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 10px);
+  width: min(340px, calc(100vw - 32px));
+  padding: 14px 16px 12px;
+  background: var(--card);
+  color: var(--foreground);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) + 4px);
+  box-shadow: var(--shadow-md);
+  max-height: calc(100vh - 90px);
+  overflow-y: auto;
+  opacity: 0;
+  transform: translateY(6px) scale(0.98);
+  transform-origin: bottom right;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.ode-pop.open { opacity: 1; transform: none; pointer-events: auto; }
+.ode-pop.editing { width: min(400px, calc(100vw - 32px)); }
+.ode-view[hidden] { display: none; }
+.ode-title { font-weight: 600; font-size: 0.95rem; line-height: 1.2; }
+.ode-sub { color: var(--muted-foreground); font-size: 0.75rem; margin: 0.2rem 0 0.75rem; }
+.ode-eq {
+  font: italic 1.02rem/1.6 "STIX Two Text", "Cambria Math", "Latin Modern Math", Georgia, "Times New Roman", serif;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+.ode-eq .fn { font-style: normal; }
+.ode-params { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.75rem; }
+.ode-params .badge { font: 500 0.72rem/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; }
+.ode-note { margin: 0.75rem 0 0; font-size: 0.72rem; color: var(--muted-foreground); }
+
+/* the "write your own" editor */
+.ode-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.8rem; }
+.ode-btn {
+  display: inline-flex; align-items: center; height: 2rem; padding: 0 0.75rem;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--background); color: var(--foreground);
+  font-family: inherit; font-size: 0.8rem; font-weight: 500; line-height: 1; letter-spacing: normal; text-transform: none;
+  box-shadow: var(--shadow-sm); cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+.ode-btn:hover { background: var(--accent); border-color: var(--primary); }
+.ode-btn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--ring); }
+.ode-btn.primary { background: var(--primary); border-color: var(--primary); color: var(--primary-foreground); }
+.ode-btn.primary:hover { opacity: 0.9; background: var(--primary); }
+.ode-btn.ghost { border-color: transparent; background: transparent; box-shadow: none; color: var(--muted-foreground); }
+.ode-btn.ghost:hover { color: var(--foreground); background: var(--accent); border-color: transparent; }
+
+.ode-field { display: flex; align-items: center; gap: 0.5rem; margin: 0 0 0.4rem; }
+.ode-var {
+  flex: 0 0 3.2rem; text-align: right; color: var(--muted-foreground);
+  font: italic 0.95rem/1 "STIX Two Text", "Cambria Math", "Latin Modern Math", Georgia, serif;
+}
+.ode-edit .ode-input {
+  flex: 1 1 auto; min-width: 0; height: 2rem; margin: 0; padding: 0 0.6rem;
+  border: 1px solid var(--border); border-radius: calc(var(--radius) - 1px);
+  background: var(--background); color: var(--foreground); box-shadow: none;
+  font: 500 0.8rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+.ode-edit .ode-input::placeholder { color: var(--muted-foreground); opacity: 0.6; }
+.ode-edit .ode-input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--ring); }
+.ode-adv { margin: 0.2rem 0 0.4rem; }
+.ode-adv summary { cursor: pointer; font-size: 0.75rem; color: var(--muted-foreground); margin-bottom: 0.4rem; }
+.ode-msg { min-height: 1.1rem; margin-top: 0.4rem; font-size: 0.78rem; line-height: 1.35; }
+.ode-msg.error { color: var(--destructive); }
+.ode-msg.ok { color: var(--primary); }
+.ode-help { margin: 0.7rem 0 0; font-size: 0.7rem; line-height: 1.45; color: var(--muted-foreground); }
+
+/* background on/off: the orbit icon, crossed out when off */
+.float-bg .icon-on  { transform: rotate(0) scale(1);      opacity: 1; }
+.float-bg .icon-off { transform: rotate(-60deg) scale(0); opacity: 0; }
+.float-bg[aria-pressed="false"] .icon-on  { transform: rotate(60deg) scale(0); opacity: 0; }
+.float-bg[aria-pressed="false"] .icon-off { transform: rotate(0) scale(1);     opacity: 1; }
+/* randomize: the icon does a full spin on every click */
+.float-shuffle.spin svg { animation: float-spin 0.55s cubic-bezier(.3, 1.4, .5, 1); }
+@keyframes float-spin { to { transform: rotate(360deg); } }
+
 /* =========================================================
    Page chrome
    ========================================================= */
+html[data-theme="dark"] body { background-color: var(--background); }
 html[data-theme="dark"] body,
 html[data-theme="dark"] .page-content,
 html[data-theme="dark"] .slideout-panel,
-html[data-theme="dark"] #panel {
-  background-color: var(--background);
-  color: var(--foreground);
-}
+html[data-theme="dark"] #panel { color: var(--foreground); }
 html[data-theme="dark"] h1,
 html[data-theme="dark"] h2,
 html[data-theme="dark"] h3,
@@ -97,7 +190,7 @@ html[data-theme="dark"] a { color: var(--primary); }
 html[data-theme="dark"] a:hover { color: #9cc2f4; }
 
 html[data-theme="dark"] .site-header,
-html[data-theme="dark"] .site-header .menu-toggle button { background-color: var(--background); color: var(--foreground); }
+html[data-theme="dark"] .site-header .menu-toggle button { color: var(--foreground); }
 html[data-theme="dark"] .site-header a,
 html[data-theme="dark"] .site-header .desktop-menu ul li a,
 html[data-theme="dark"] .site-title a { color: var(--foreground); }
@@ -283,3 +376,144 @@ html, body, .page-content, .site-header { transition: background-color 0.3s ease
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
 }
+
+/* main.css paints the mobile menu button white; keep it transparent in both themes */
+.site-header .menu-toggle,
+.site-header .menu-toggle button { background: transparent; }
+
+/* =========================================================
+   Background attractor (js/attractors.js)
+   ========================================================= */
+.bg-attractor {
+  position: fixed;            /* window-sized; the scene inside is shifted by the scroll offset, so it moves with the page */
+  top: 0; left: 0;            /* width/height are set in px by js */
+  z-index: -1;                 /* behind all content, above the page background */
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 2.5s ease;
+}
+.bg-attractor.ready { opacity: 1; }
+/* the page layers must be see-through for the canvas to show... */
+.page-content, .slideout-panel, #panel { background-color: transparent; }
+/* ...except while the mobile menu is sliding open (Slideout needs an opaque panel) */
+.slideout-open .slideout-panel,
+.slideout-open #panel { background-color: var(--background); }
+
+/* Soft veil behind text: where there is text, the comets fade to a whisper. The veil is the page
+   colour at partial opacity, with a feathered edge (the box-shadow), so it never shows as a box. */
+.page-content :is(p, ul, ol, h1, h2, h3):not(.highlight-card *):not(.fun-card *):not(.ode-inline *) {
+  transition: background-color 0.8s ease, box-shadow 0.8s ease;
+}
+html.has-bg .page-content :is(p, ul, ol, h1, h2, h3):not(.highlight-card *):not(.fun-card *):not(.ode-inline *) {
+  background-color: var(--scrim);
+  box-shadow: 0 0 14px 9px var(--scrim);
+  border-radius: 6px;
+}
+
+/* =========================================================
+   Fun page: subtabs, inline editor, gallery
+   ========================================================= */
+.fun-lead { max-width: 42rem; margin: 0 0 1.5rem; color: var(--foreground); }
+
+.ode-inline {
+  max-width: 30rem; margin: 0 0 2rem; padding: 1rem 1.1rem 0.9rem;
+  background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) + 4px); box-shadow: var(--shadow-sm);
+}
+.ode-inline[hidden] { display: none; }
+
+.fun-group { margin: 2rem 0 0.9rem; font-size: 1.05rem; font-weight: 700; }
+.fun-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1rem; }
+.fun-card {
+  display: flex; flex-direction: column; padding: 0; overflow: hidden;
+  background: var(--card); color: var(--foreground);
+  border: 1px solid var(--border); border-radius: calc(var(--radius) + 4px); box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.fun-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.fun-card.running { border-color: var(--primary); box-shadow: 0 0 0 1px var(--primary), var(--shadow-md); }
+.fun-body { display: flex; flex-direction: column; flex: 1 1 auto; padding: 1rem 1.1rem 1rem; }
+
+/* live preview: collapsed until the card is running, then it unrolls above the title */
+.fun-preview {
+  height: 0; overflow: hidden;
+  border-bottom: 1px solid transparent;
+  background: var(--muted);
+  transition: height 0.4s cubic-bezier(.3, 1.1, .5, 1), border-color 0.4s ease;
+}
+.fun-preview canvas { display: block; width: 100%; height: 170px; }
+.fun-card.previewing .fun-preview { height: 170px; border-bottom-color: var(--border); }
+@media (prefers-reduced-motion: reduce) { .fun-preview { transition: none; } }
+.fun-head { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+.fun-head h3 { margin: 0; font-size: 1.05rem; line-height: 1.25; }
+.fun-blurb { margin: 0.45rem 0 0.7rem; font-size: 0.88rem; line-height: 1.5; color: var(--muted-foreground); }
+.fun-card .ode-eq { font-size: 0.98rem; }
+.fun-card .ode-actions { margin-top: auto; padding-top: 0.9rem; }
+
+/* the small link at the end of the ? card */
+.ode-more { display: inline-block; margin-top: 0.7rem; font-size: 0.78rem; color: var(--primary); }
+
+/* a short message above the floating buttons ("Running Galaxy") */
+.ode-toast {
+  position: absolute; right: 0; bottom: calc(100% + 10px); max-width: min(320px, calc(100vw - 32px));
+  padding: 0.5rem 0.8rem; font-size: 0.78rem; line-height: 1.35;
+  background: var(--foreground); color: var(--background); border-radius: var(--radius); box-shadow: var(--shadow-md);
+  opacity: 0; transform: translateY(6px); pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.ode-toast.show { opacity: 1; transform: none; }
+
+/* =========================================================
+   Navigation: the "Fun" dropdown (desktop) and its group (mobile menu)
+   ========================================================= */
+.nav-dropdown { position: relative; }
+.nav-trigger {
+  display: inline; padding: 0; margin: 0; border: 0; background: none; height: auto;
+  color: var(--foreground); cursor: pointer;
+  font-family: inherit; font-size: inherit; font-weight: 200; line-height: inherit; letter-spacing: normal; text-transform: none;
+  transition: color 0.15s ease;
+}
+.nav-trigger:hover { color: var(--muted-foreground); }
+.nav-trigger:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--ring); border-radius: 4px; }
+.nav-trigger::after {                                  /* a small chevron that turns when open */
+  content: ""; display: inline-block; width: 0.38em; height: 0.38em; margin: 0 0 0.18em 0.45em;
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg); transition: transform 0.2s ease;
+}
+.nav-dropdown.open .nav-trigger::after { transform: rotate(225deg) translate(-0.08em, -0.08em); }
+.nav-dropdown-menu {
+  position: absolute; top: calc(100% + 10px); left: 50%; z-index: 20;
+  min-width: 9rem; padding: 0.25rem; text-align: left;
+  background: var(--card); border: 1px solid var(--border); border-radius: calc(var(--radius) + 2px); box-shadow: var(--shadow-md);
+  opacity: 0; visibility: hidden; transform: translateX(-50%) translateY(-4px);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+}
+.nav-dropdown.open .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+.site-header .desktop-menu .nav-dropdown-menu a {
+  display: block; padding: 0.45rem 0.7rem; border-radius: calc(var(--radius) - 2px);
+  color: var(--foreground) !important; font-size: 0.9rem; font-weight: 400; text-decoration: none;
+}
+.site-header .desktop-menu .nav-dropdown-menu a:hover,
+.site-header .desktop-menu .nav-dropdown-menu a:focus-visible { background: var(--accent); outline: none; }
+.site-header .desktop-menu .nav-dropdown-menu a[aria-current="page"] { font-weight: 600; }
+
+/* the mobile slide-out menu: "Fun" is a label with ODEs indented under it */
+.menu .menu-group-label {
+  display: block; padding: 8px 10px 0; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-foreground);
+}
+.menu .page-link.menu-sub { padding-left: 24px; }
+
+/* the small trail above a page heading ("Fun / ODEs") */
+.crumb { margin: 0 0 -0.4rem; text-align: center; font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-foreground); }
+
+/* /fun: a small index page (the nav never links here; it only catches typed or old addresses) */
+.fun-index { grid-template-columns: repeat(auto-fill, minmax(260px, 340px)); }
+a.fun-tile, a.fun-tile:hover, a.fun-tile:visited { color: var(--foreground); text-decoration: none; }
+.fun-go { margin-top: auto; padding-top: 0.6rem; font-size: 0.85rem; font-weight: 500; color: var(--primary); }
+
+/* "use as my background": shows on the running card, filled in when it is the saved one */
+.fun-card:not(.running) .pin-btn { display: none; }
+.ode-ico { width: 14px; height: 14px; margin-right: 0.4rem; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ode-btn.active { border-color: var(--primary); color: var(--primary); }
+.ode-btn.active .ode-ico { fill: currentColor; }
+.ode-pinned { margin: 0.6rem 0 0; font-size: 0.74rem; line-height: 1.4; color: var(--muted-foreground); }
+.ode-pinned[hidden] { display: none; }
